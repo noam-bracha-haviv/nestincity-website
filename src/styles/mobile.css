@@ -86,6 +86,24 @@
      hiding them would join the words around them ("Most" + "of"), and with
      wrapping enabled above they only break a line early, never overflow. */
 
+  /* The flow reset above defeats .visually-hidden: `clip` only applies to
+     absolutely positioned boxes, and width/height were forced to auto — so the
+     screen-reader-only labels (e.g. the footer's "Phone number") rendered as
+     visible text next to the field's own placeholder. Put them back out of
+     sight; they stay in the accessibility tree, exactly as on desktop. */
+  .band .visually-hidden,
+  .header .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .band img,
   .band video {
     width: 100% !important;
@@ -248,16 +266,26 @@
     position: relative !important;
   }
 
+  /* The source is 1280x894 with 86px black bars baked in top and bottom, so the
+     real picture is 1280x722 (see the note in home.css). Filling the frame with
+     the *file* therefore shows the bars. Scaling the element to 894/722 =
+     123.83% of the frame height pushes the bars outside the frame, exactly as
+     the desktop rule does; width stays auto so the intrinsic ratio is kept and
+     nothing is stretched. ~6% of the width is cropped. */
   .story__video video {
     position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
+    left: 50% !important;
+    top: 50% !important;
+    width: auto !important;
+    height: 123.83% !important;
+    max-width: none !important;
+    transform: translate(-50%, -50%) !important;
+    object-fit: fill;
   }
 
   .story__video-toggle,
-  .story__video-mute {
+  .story__video-mute,
+  .story__video-full {
     position: absolute !important;
     width: 40px !important;
     height: 40px !important;
@@ -271,6 +299,40 @@
 
   .story__video-mute {
     left: 60px !important;
+  }
+
+  /* fullscreen — same pill treatment as the other two controls */
+  .story__video-full {
+    left: 108px !important;
+    display: grid !important;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--blush);
+    box-shadow: inset 0 0 0 1px var(--blue-pale);
+    z-index: 2;
+  }
+
+  /* the standard expand glyph: two opposite corner brackets */
+  .story__video-full::before,
+  .story__video-full::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 7px;
+  }
+
+  .story__video-full::before {
+    top: 11px;
+    left: 11px;
+    border-top: 2px solid var(--blue);
+    border-left: 2px solid var(--blue);
+  }
+
+  .story__video-full::after {
+    bottom: 11px;
+    right: 11px;
+    border-bottom: 2px solid var(--blue);
+    border-right: 2px solid var(--blue);
   }
 
   .story__more {
@@ -313,6 +375,9 @@
   /* compare -------------------------------------------------------------- */
   .species {
     margin-bottom: 28px;
+    /* desktop clips the card to its fixed height; on mobile the card grows */
+    overflow: visible;
+    padding-bottom: 22px;
   }
 
   .species__head {
@@ -329,23 +394,47 @@
     font-size: 16px !important;
   }
 
+  /* The list block is centred inside the card while each sentence stays left
+     aligned: the <ul> is only as wide as its content (fit-content) and centred
+     with auto margins, so the text edge is common to every row. */
   .species__traits {
-    margin-top: 16px !important;
+    width: fit-content;
+    max-width: 100%;
+    margin: 16px auto 0 !important;
+    padding: 0 18px !important; /* desktop pads 54px top / 67px left */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
+  /* every row is the same two columns: fixed icon column, then the sentence.
+     The li's ::before is the first grid item and the text run is wrapped in an
+     anonymous second one, so the gap is identical on every row. */
   .species__traits li {
-    padding-left: 30px;
-    position: relative !important;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 12px;
+    align-items: start;
+    padding-left: 0 !important;
+    line-height: 1.5 !important;
+    text-align: left;
   }
 
   .species__traits li::before {
-    position: absolute !important;
-    left: 0 !important;
-    top: 4px !important;
+    position: static !important;
+    width: 24px !important;
+    height: 20px !important;
+    margin-top: 2px;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
   }
 
-  .species__traits li + li {
-    margin-top: 12px !important;
+  /* the desktop rhythm (26 / 23.5 / 37px) is replaced by the flex gap above */
+  .species__traits li + li,
+  .species--honey .species__traits li + li:not(.species__traits-last),
+  .species__traits li.species__traits-last {
+    margin-top: 0 !important;
   }
 
   .compare__cta,
@@ -355,8 +444,17 @@
     margin-top: 22px;
   }
 
-  /* statement ------------------------------------------------------------ */
+  /* statement ------------------------------------------------------------
+     DOM order is bee (top-right), bee (bottom-left), paragraph — which stacked
+     both bees first and left the text below them with dead space underneath.
+     A column flex box with `order` puts the paragraph between the two bees
+     without touching the markup; the gap gives balanced, non-overlapping
+     spacing on both sides. */
   .statement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
     text-align: center;
   }
 
@@ -365,12 +463,22 @@
   img.statement__bee {
     width: 120px !important;
     height: auto !important;
-    margin: 0 auto;
+    margin: 0 !important;
+    flex: 0 0 auto;
+  }
+
+  img.statement__bee--tr {
+    order: 1;
   }
 
   .statement__text {
-    margin: 20px 0 !important;
+    order: 2;
+    margin: 0 !important;
     text-align: center !important;
+  }
+
+  img.statement__bee--bl {
+    order: 3;
   }
 
   /* my workshop ---------------------------------------------------------- */
@@ -654,20 +762,46 @@
     font-size: 15px !important;
   }
 
-  .shop-body__lede,
-  .shop-body__eyebrow,
-  .shop-filters {
+  .shop-body__lede {
     margin-top: 20px !important;
   }
 
+  /* clear gap between the workshop button and the sticky block below it */
+  .shop-body__cta {
+    margin-bottom: 20px !important;
+  }
+
+  /* ONE sticky box holds the label and the pills, so they pin and release
+     together. Its containing block is .shop-body, so it can never travel past
+     that band: it releases at the band's bottom padding edge — above the footer
+     — and that holds for any filter, including one that leaves a single card
+     (a shorter grid simply means a shorter sticky range). */
+  .shop-sticky {
+    position: sticky !important;
+    top: 0;
+    z-index: 5;
+    /* bleed the opaque background to both screen edges through the band's 20px
+       padding, then pad the contents back to the band's content edge so the
+       label and pills stay aligned with the rest of the page */
+    margin: 0 -20px !important;
+    max-width: none;
+    padding: 10px 20px 12px !important;
+    background: var(--page-bg);
+  }
+
   .shop-body__eyebrow {
-    display: inline-block;
+    display: block;
+    width: fit-content; /* the rule under the text must not span the screen */
+    margin: 0 0 10px !important;
+    line-height: 20px !important;
   }
 
   .shop-filters {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .filter {
@@ -763,11 +897,44 @@
     height: 46px !important;
     font-size: 15px !important;
     width: auto !important;
+    /* icon hard left, centred against the label, consistent gap between them */
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px !important;
+    padding: 0 18px !important;
   }
 
+  /* the reset's width/height:auto let these render at their intrinsic PNG size —
+     a big square that broke out of the pill. A fixed 24px box with `contain`
+     keeps every glyph the same size, inside the pill, and undistorted. */
   .ct-chips img {
-    width: auto !important;
-    flex: 0 0 auto;
+    width: 24px !important;
+    height: 24px !important;
+    flex: 0 0 24px;
+    object-fit: contain;
+
+    /* The pale square behind each glyph is NOT css — these three PNGs are fully
+       opaque (hasAlpha: no), with an rgb(~221, ~222, ~241) fill baked in behind
+       the blue mark, so no background/border/shadow/pseudo rule can remove it.
+       `brightness` lifts that fill to pure white, and `multiply` makes white a
+       no-op against the backdrop, so the square disappears; the glyph is
+       brightened then multiplied back down, landing within a few units of the
+       original #2154dd. Sizes and positions are untouched.
+       A transparent (or SVG) asset would remove the need for this. */
+    background: none;
+    filter: brightness(1.16);
+    mix-blend-mode: multiply;
+  }
+
+  /* nothing paints a box behind the icon on the wrapper either — stated
+     explicitly so a future background on the pill cannot reintroduce one
+     behind the glyph. The pill's own border and hover fill are untouched. */
+  .ct-chips a > img,
+  .ct-chips span > img {
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
   }
 
   .ct-body__title {
@@ -810,8 +977,10 @@
   /* =======================================================================
      FOOTER
      ======================================================================= */
+  /* height comes from the content — the 692px desktop band is dropped by the
+     .band reset above, and these paddings are all that remain */
   .footer {
-    padding: 44px 20px 32px;
+    padding: 30px 20px 26px;
   }
 
   .footer__gradient {
@@ -821,26 +990,38 @@
     width: 100% !important;
     height: 100% !important;
     transform: none !important;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 160px);
-    mask-image: linear-gradient(to bottom, transparent 0, #000 160px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 120px);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 120px);
+  }
+
+  /* THE reason the socials, columns, credits and bottom links were invisible:
+     these three blocks carry z-index: 1 on desktop, but the flow reset makes
+     them static, and z-index does not apply to static boxes — so the gradient
+     (absolute, z-index 0) painted over all of them. `relative` keeps them in
+     the flow and puts the stacking order back. */
+  .footer__top,
+  .footer__mid,
+  .footer__bottom {
+    position: relative !important;
+    z-index: 1;
   }
 
   .footer__top {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
   }
 
   .footer__wordmark {
-    font-size: 32px !important;
+    font-size: 28px !important;
   }
 
-  /* the pill keeps its shape; the label no longer slides (no room for it) */
+  /* smaller pill; the label no longer slides (no room for it on a phone) */
   .phone-cta {
     display: flex;
     align-items: center;
-    gap: 8px;
-    height: 58px !important;
+    gap: 6px;
+    height: 48px !important;
     padding: 4px;
     border-radius: var(--r-pill) !important;
     overflow: hidden;
@@ -850,67 +1031,86 @@
     flex: 1 1 auto;
     min-width: 0; /* an input's intrinsic width would push the button out at 320 */
     height: 100% !important;
+    padding-left: 12px;
+    font-size: 13px !important;
     text-align: left;
-    padding-left: 14px;
   }
 
   .phone-cta__button {
     flex: 0 0 auto;
-    height: 50px !important;
-    padding: 0 18px;
+    height: 40px !important;
+    padding: 0 14px;
+    font-size: 13px !important;
     transform: none !important;
     transition: background 0.18s ease;
   }
 
+  /* socials + credit across the top, then the two link columns side by side */
   .footer__mid {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 34px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 16px;
+    margin-top: 24px;
+  }
+
+  .footer__col--brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer__heading {
+    font-size: 16px !important;
   }
 
   .socials {
     display: flex;
-    gap: 12px;
+    justify-content: flex-start;
+    gap: 10px;
   }
 
   .socials li:nth-child(4) {
-    margin-left: 0;
+    margin-left: 0; /* desktop pulls the fourth button 2px closer */
   }
 
   .socials__btn {
     width: 32px !important;
     height: 32px !important;
+    flex: 0 0 32px;
   }
 
+  /* the reset's width/height:auto let the glyphs render at their intrinsic SVG
+     size and spill out of the 32px circle. A 14px box with `contain` scales each
+     one down proportionally — the four assets have different aspects (13x13,
+     14x11, 13x13, 12x12) — and keeps them inside the border. */
   .socials__btn img {
-    width: auto !important;
+    width: 14px !important;
+    height: 14px !important;
+    object-fit: contain;
   }
 
   .footer__copy {
-    margin-top: 16px !important;
+    margin-top: 12px !important;
   }
 
   .footer__list {
-    margin-top: 12px !important;
+    margin-top: 8px !important;
   }
 
   .footer__list li {
     height: auto !important;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .footer__bottom {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 34px;
+    gap: 12px;
+    margin-top: 24px;
   }
 
   .footer__legal {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 16px;
+    gap: 8px 14px;
   }
 
   .footer__legal--last {

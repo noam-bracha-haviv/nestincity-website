@@ -43,14 +43,19 @@
 
         <a class="shop-body__cta btn btn--primary" href="contact.html#workshop-request">Book a Workshop</a>
 
-        <a class="shop-body__eyebrow link-rule" href="#shop-grid">All products</a>
+        <!-- Grouping wrapper only: it is a static box and both children keep
+             their own absolute Figma coordinates against .shop-body, so desktop
+             geometry is unchanged. mobile.css makes this one sticky block. -->
+        <div class="shop-sticky">
+          <a class="shop-body__eyebrow link-rule" href="#shop-grid">All products</a>
 
-        <div class="shop-filters">
-          <button class="filter filter--on" type="button" data-filter="All">All</button>
-          <button class="filter" type="button" data-filter="Habitat">Habitat</button>
-          <button class="filter" type="button" data-filter="Refills">Refills</button>
-          <button class="filter" type="button" data-filter="Kits">Kits</button>
-          <button class="filter" type="button" data-filter="Print">Print</button>
+          <div class="shop-filters">
+            <button class="filter filter--on" type="button" data-filter="All">All</button>
+            <button class="filter" type="button" data-filter="Habitat">Habitat</button>
+            <button class="filter" type="button" data-filter="Refills">Refills</button>
+            <button class="filter" type="button" data-filter="Kits">Kits</button>
+            <button class="filter" type="button" data-filter="Print">Print</button>
+          </div>
         </div>
 
         <div class="shop-grid" id="shop-grid">
