@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    <div class="page page--shop">
+      {{> header}}
+
+      <!-- ===== hero — Figma "Desktop - 11" (1440x847) ===== -->
+      <section class="hero band">
+        <h1 class="shop-hero__title">
+          <span class="shop-hero__serif">Take a nesting habitat&nbsp;</span>
+          <span class="shop-hero__sans">home with you</span>
+        </h1>
+
+        <div class="shop-features">
+          <article class="shop-feature">
+            <h2>Hand&rsquo;s cast</h2>
+            <p>Every module is cast, drilled and dried<br />by hand in small batches</p>
+          </article>
+          <article class="shop-feature">
+            <h2>Urban ready</h2>
+            <p>built for balconies, roofs and<br />community gardens not for forests</p>
+          </article>
+          <article class="shop-feature">
+            <h2>Modular</h2>
+            <p>start with three modules and grow the<br />habitat season by season</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== products — Figma "Desktop - 15" (y900 h1487) ===== -->
+      <section class="shop-body band">
+        <h2 class="shop-body__title">The<br />workshop is<br />the <em>heart</em></h2>
+
+        <p class="shop-body__lede">
+          These products are an addition to the experience  not a substitute for it. We<br />
+          recommend starting with the workshop, getting a close up understanding of<br />
+          how the nesting habitat works, and only then buying additional products that<br />
+          fit your garden.
+        </p>
+
+        <a class="shop-body__cta btn btn--primary" href="contact.html#workshop-request">Book a Workshop</a>
+
+        <a class="shop-body__eyebrow link-rule" href="#shop-grid">All products</a>
+
+        <div class="shop-filters">
+          <button class="filter filter--on" type="button" data-filter="All">All</button>
+          <button class="filter" type="button" data-filter="Habitat">Habitat</button>
+          <button class="filter" type="button" data-filter="Refills">Refills</button>
+          <button class="filter" type="button" data-filter="Kits">Kits</button>
+          <button class="filter" type="button" data-filter="Print">Print</button>
+        </div>
+
+        <div class="shop-grid" id="shop-grid">
+          <article class="product" data-category="Habitat">
+            <div class="product__media">
+              <img src="assets/img/shop/product-bricks.jpg" alt="" />            </div>
+            <p class="product__chip">Popular</p>
+            <h3 class="product__name">Wild bee nesting bricks</h3>
+            <p class="product__sub">Set of 3 bricks</p>
+            <p class="product__desc">Three handmade cast nesting bricks, each<br />with a different hole diameter <a href="#">See more</a></p>
+            <p class="product__price">70$</p>
+            <a class="product__buy" href="#">buy <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" /></a>
+          </article>
+          <article class="product" data-category="Habitat">
+            <div class="product__media">
+              <img src="assets/img/shop/product-hive.jpg" alt="" />            </div>
+            <p class="product__chip">Popular</p>
+            <h3 class="product__name">Honeybee hive</h3>
+            <p class="product__sub">Full hive · Apis mellifera</p>
+            <p class="product__desc">An educational honeybee hive, suited to a<br />community garden or a large <a href="#">See more</a></p>
+            <p class="product__price">670$</p>
+            <a class="product__buy" href="#">buy <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" /></a>
+          </article>
+          <article class="product" data-category="Kits">
+            <div class="product__media">
+              <img src="assets/img/shop/product-kit.jpg" alt="" />            </div>
+            <p class="product__chip">Popular</p>
+            <h3 class="product__name">Maintenance kit</h3>
+            <p class="product__sub">Cleaning and refresh</p>
+            <p class="product__desc">Everything you need to maintain the<br />nesting habitat every 3 years <a href="#">See more</a></p>
+            <p class="product__price">120$</p>
+            <a class="product__buy" href="#">buy <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" /></a>
+          </article>
+          <article class="product" data-category="Habitat">
+            <div class="product__media">
+              <img src="assets/img/shop/product-habitat.jpg" alt="" />            </div>
+            <p class="product__chip">Popular</p>
+            <h3 class="product__name">Wild bee nesting bricks</h3>
+            <p class="product__sub">Set of 3 bricks</p>
+            <p class="product__desc">Three handmade cast nesting bricks, each<br />with a different hole diameter</p>
+            <p class="product__price">70$</p>
+            <a class="product__buy" href="#">buy <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" /></a>
+          </article>
+          <article class="product" data-category="Refills">
+            <div class="product__media">
+              <img src="assets/img/shop/product-lecture.jpg" alt="" />            </div>
+            <p class="product__chip">Popular</p>
+            <h3 class="product__name">Wild bees lecture</h3>
+            <p class="product__sub">An educational talk for groups</p>
+            <p class="product__desc">Discover the fascinating world of wild bees<br />and learn how to support them <a href="#">See more</a></p>
+            <p class="product__price">670$</p>
+            <a class="product__buy" href="#">buy <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" /></a>
+          </article>
+          <article class="product" data-category="Print">
+            <div class="product__media">
+              <img src="assets/img/shop/product-guide.jpg" alt="" />            </div>
+            <p class="product__chip">Popular</p>
+            <h3 class="product__name">Urban wild bee guide</h3>
+            <p class="product__sub">Illustrated identification guide</p>
+            <p class="product__desc">A practical printed guide to common wild<br />bees, their nesting habits and <a href="#">See more</a></p>
+            <p class="product__price">120$</p>
+            <a class="product__buy" href="#">buy <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" /></a>
+          </article>
+        </div>
+      </section>
+
+      {{> footer col2title="COMPANY"}}
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

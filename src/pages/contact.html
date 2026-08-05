@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    <div class="page page--contact">
+      {{> header}}
+
+      <!-- ===== hero — Figma "Desktop - 11" (1440x871) ===== -->
+      <section class="hero band">
+        <h1 class="ct-hero__title">
+          <span class="ct-hero__serif">Let&rsquo;s build a home</span>
+          <span class="ct-hero__sans">in your garden</span>
+        </h1>
+
+        <ul class="ct-chips">
+          <li><a href="mailto:support@nestincity.com"><img src="assets/svg/icon-mail.png" alt="" width="17" height="18" />support@nestincity.com</a></li>
+          <li><span><img src="assets/svg/icon-pin.png" alt="" width="15" height="18" />Tel Aviv</span></li>
+          <li><a href="tel:0586650737"><img src="assets/svg/icon-phone.png" alt="" width="15" height="18" />058-6650-737</a></li>
+        </ul>
+      </section>
+
+      <!-- ===== request form — Figma "Desktop - 15" (y800 h1040) ===== -->
+      <section class="ct-body band" id="workshop-request">
+        <a class="ct-body__eyebrow link-rule" href="shop.html">Workshop request</a>
+
+        <h2 class="ct-body__title"><em>A</em> community garden? <em>A</em> school? <em>A</em> group?</h2>
+
+        <div class="ct-card">
+          <p class="ct-card__lede">
+            The workshop comes to you. Tell us about the<br />
+            group and together we&rsquo;ll build the next workshop.
+          </p>
+
+          <img class="ct-card__photo" src="assets/img/contact/contact-photo.jpg" alt="" />
+
+          <form class="ct-form" action="#" method="post">
+            <input class="ct-field ct-field--half" type="tel" name="phone" placeholder="Phone" aria-label="Phone" />
+            <input class="ct-field ct-field--half" type="text" name="name" placeholder="Full name" aria-label="Full name" />
+            <input class="ct-field" type="email" name="email" placeholder="Email" aria-label="Email" />
+            <input class="ct-field ct-field--half" type="text" name="group" placeholder="Type of group" aria-label="Type of group" />
+            <input class="ct-field ct-field--half" type="text" name="participants" placeholder="Participants" aria-label="Participants" />
+            <input class="ct-field" type="text" name="location" placeholder="Locations" aria-label="Locations" />
+            <input class="ct-field" type="text" name="date" placeholder="mm/ dd/ yyy" aria-label="Date" />
+            <textarea class="ct-field ct-field--area" name="notes" placeholder="Anythings else?" aria-label="Anythings else?"></textarea>
+            <button class="ct-submit btn btn--primary" type="submit">Send request</button>
+          </form>
+        </div>
+      </section>
+
+      {{> footer col2title="COMPANY"}}
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

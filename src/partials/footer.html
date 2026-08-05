@@ -1,0 +1,82 @@
+<!-- Shared footer — Figma footer band, 1440 x 692.
+     Wordmark + phone CTA row @ y=96 · three columns @ y=288 · legal row @ y=591
+     Gradient bleed occupies y 120..692.
+     `col2title` is "NEST IN CITY" on Home and "COMPANY" on the inner pages. -->
+<footer class="footer band">
+  <div class="footer__gradient" aria-hidden="true"></div>
+
+  <div class="footer__top">
+    <p class="footer__wordmark">Nest in City</p>
+
+    <form class="phone-cta" action="#" method="post">
+      <label class="visually-hidden" for="footer-phone">Phone number</label>
+      <input
+        class="phone-cta__input"
+        id="footer-phone"
+        name="phone"
+        type="tel"
+        placeholder="Phone number"
+      />
+      <a class="phone-cta__button" href="contact.html#workshop-request">Book a Workshop</a>
+    </form>
+  </div>
+
+  <div class="footer__mid">
+    <div class="footer__col footer__col--brand">
+      <ul class="socials">
+        <li>
+          <a class="socials__btn" href="https://www.linkedin.com/in/noam-haviv-product-design?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="assets/svg/social-linkedin.svg" alt="" width="13" height="13" />
+          </a>
+        </li>
+        <li>
+          <a class="socials__btn" href="https://www.youtube.com/watch?feature=shared&amp;v=cDvun1LTW0U" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <img src="assets/svg/social-youtube.svg" alt="" width="14" height="11" />
+          </a>
+        </li>
+        <li>
+          <a class="socials__btn" href="https://www.facebook.com/share/18zS5aQSzx/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img src="assets/svg/social-facebook.svg" alt="" width="13" height="13" />
+          </a>
+        </li>
+        <li>
+          <a class="socials__btn" href="https://www.instagram.com/nestincity_b?igsh=cTE3MGdhOTRhdzhl&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="assets/svg/social-instagram.svg" alt="" width="12" height="12" />
+          </a>
+        </li>
+      </ul>
+      <p class="footer__copy">Design: Noam Haviv · NestinCity © 2026</p>
+    </div>
+
+    <nav class="footer__col footer__col--links" aria-label="Site">
+      <h2 class="footer__heading">{{col2title}}</h2>
+      <ul class="footer__list">
+        <li><a href="index.html">Home</a></li>
+        <li><span class="footer__inert">About</span></li>
+        <li><a href="workshop.html">Workshop</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer__col footer__col--follow" aria-label="Follow us">
+      <h2 class="footer__heading">FOLLOW US</h2>
+      <ul class="footer__list">
+        <li><a href="https://www.linkedin.com/in/noam-haviv-product-design?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer">Linkedin</a></li>
+        <li><a href="https://www.youtube.com/watch?feature=shared&amp;v=cDvun1LTW0U" target="_blank" rel="noopener noreferrer">Youtube</a></li>
+        <li><a href="https://www.instagram.com/nestincity_b?igsh=cTE3MGdhOTRhdzhl&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="footer__bottom">
+    <ul class="footer__legal">
+      <li><a href="#">Sustainability</a></li>
+      <li><a href="#">Impact</a></li>
+      <li><a href="#">Impact</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li class="footer__legal--last"><a href="contact.html">Contact</a></li>
+    </ul>
+    <p class="footer__credit">Designed by Noam Haviv</p>
+  </div>
+</footer>

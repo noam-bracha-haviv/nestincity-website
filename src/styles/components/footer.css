@@ -1,0 +1,277 @@
+/* ==========================================================================
+   Footer — Figma footer band, 1440 x 692
+
+   gradient bleed        y 120 .. 692            (1440 x 572 export)
+   "Nest in City"        (80,96)   Source Serif Pro 40 / 110%  #2154dd
+   phone CTA "Frame 37"  (1022,97) 338 x 62  fill #2154dd  r 9999
+     · placeholder       (1045,119) Poppins 400 14 / 132%  ls -2%  #6682d0
+     · button            (1187,100) 169 x 56  fill #f1e3ef  r 3000
+       label             Poppins 500 14 / 132%  ls -1%  #2154dd
+   columns row           y 288, x 80 / 517 / 955
+     · social buttons    32 x 32, 1px #2154dd, r 3000, x 80/124/168/210
+     · copyright         (80,352)  14 / 132%  #9dafe2
+     · headings          18 / 132% #2154dd     list items 16 / 132% #2154dd
+       list rhythm       35px (item box 11 + 24 gap)
+   legal row             y 591  14 / 132% #9dafe2   credit 16 / 132% #2154dd
+   ========================================================================== */
+
+.footer {
+  height: 692px;
+  /* no overflow clip here — the gradient below is intentionally full-bleed and
+     would otherwise be cut back to the 1440 grid */
+}
+
+.footer__gradient {
+  position: absolute;
+  left: 50%;
+  top: 120px;
+  width: max(100vw, var(--page-w));
+  height: 572px;
+  transform: translateX(-50%);
+  z-index: 0;
+  background: url('../../assets/gradients/footer.jpg') center top / cover no-repeat;
+  /* mirror of the hero fade: dissolve the first 220px up into the page ground
+     so the footer gradient has no visible starting edge */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 220px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 220px);
+}
+
+/* ---- top row ------------------------------------------------------------ */
+.footer__top {
+  position: absolute;
+  z-index: 1;
+  left: var(--gutter);
+  top: 96px;
+  width: 1280px;
+  height: 64px;
+}
+
+.footer__wordmark {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--blue);
+}
+
+/* phone + CTA pill ("Frame 37") */
+.phone-cta {
+  /* the pill's own measurements, so the slide distance is derived, not guessed */
+  --cta-w: 338px;
+  --cta-btn-w: 169px;
+  --cta-inset: 4px;
+  position: absolute;
+  left: 942px; /* 1022 - 80 */
+  top: 1px; /* 97 - 96 */
+  width: var(--cta-w);
+  height: 62px;
+  background: var(--blue);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.phone-cta__input {
+  /* Figma centres the placeholder on x 1095.5, not on the middle of the
+     remaining space, so the field stops 18px short of the button */
+  width: 147px;
+  height: 100%;
+  border: 0;
+  background: none;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: var(--lh-132);
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--blush);
+}
+
+.phone-cta__input::placeholder {
+  color: var(--blue-soft);
+  opacity: 1;
+}
+
+.phone-cta__input:focus {
+  outline: none;
+}
+
+.phone-cta__button {
+  position: absolute;
+  right: var(--cta-inset);
+  top: 3px;
+  width: var(--cta-btn-w);
+  height: 56px;
+  display: grid;
+  place-items: center; /* the label was centred by the <button> default */
+  border-radius: 3000px;
+  background: var(--blush-pink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: var(--lh-132);
+  letter-spacing: -0.01em;
+  color: var(--blue);
+  transition: background 0.18s ease, transform 300ms ease-in-out;
+}
+
+.phone-cta__button:hover {
+  background: #e7d5e5;
+}
+
+/* click / keyboard activation: the pill travels left across the phone field
+   until it meets the container's inner left edge, then navigation follows */
+.phone-cta__button.is-sliding {
+  transform: translateX(
+    calc(-1 * (var(--cta-w) - var(--cta-btn-w) - var(--cta-inset) * 2))
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone-cta__button {
+    transition: background 0.18s ease;
+  }
+  .phone-cta__button.is-sliding {
+    transform: none;
+  }
+}
+
+/* ---- columns ------------------------------------------------------------ */
+.footer__mid {
+  position: absolute;
+  z-index: 1;
+  left: var(--gutter);
+  top: 288px;
+  width: 1280px;
+  height: 207px;
+}
+
+.footer__col {
+  position: absolute;
+  top: 0;
+}
+
+.footer__col--brand {
+  left: 0;
+  width: 405px;
+}
+.footer__col--links {
+  left: 437px; /* 517 - 80 */
+  width: 406px;
+}
+.footer__col--follow {
+  left: 875px; /* 955 - 80 */
+  width: 406px;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+/* Figma spaces the fourth button 10px away, not 12px */
+.socials li:nth-child(4) {
+  margin-left: -2px;
+}
+
+.socials__btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--blue);
+  border-radius: 3000px;
+  transition: background 0.18s ease;
+}
+
+.socials__btn:hover {
+  background: rgba(33, 84, 221, 0.08);
+}
+
+.footer__copy {
+  margin: 0;
+  position: absolute;
+  top: 64px; /* 352 - 288 */
+  left: 0;
+  font-size: 14px;
+  line-height: var(--lh-132);
+  color: var(--blue-muted);
+}
+
+.footer__heading {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: var(--lh-132);
+  color: var(--blue);
+}
+
+.footer__list {
+  position: absolute;
+  /* Figma y 344 is the cap line, not the top of the line box */
+  top: 49px;
+  left: 0;
+}
+
+.footer__list li {
+  height: 35px; /* 11px text box + 24px gap */
+}
+
+.footer__list a,
+.footer__inert {
+  font-size: 16px;
+  line-height: var(--lh-132);
+  color: var(--blue);
+}
+
+.footer__list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- legal row ---------------------------------------------------------- */
+.footer__bottom {
+  position: absolute;
+  z-index: 1;
+  left: var(--gutter);
+  top: 591px;
+  width: 1280px;
+  height: 21px;
+}
+
+.footer__legal {
+  display: flex;
+  gap: 16px;
+}
+
+.footer__legal a {
+  display: block;
+}
+
+.footer__legal--last {
+  margin-left: -2px; /* Figma spaces "Contact" 14px away */
+}
+
+.footer__legal a {
+  font-size: 14px;
+  line-height: var(--lh-132);
+  color: var(--blue-muted);
+}
+
+.footer__legal a:hover {
+  color: var(--blue);
+}
+
+.footer__credit {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 16px;
+  line-height: var(--lh-132);
+  color: var(--blue);
+  text-align: right;
+}

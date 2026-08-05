@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    <div class="page page--workshop">
+      {{> header}}
+
+      <!-- ===== hero — Figma "Desktop - 11" (1440x1024) ===== -->
+      <section class="hero band">
+        <h1 class="ws-hero__title">
+          <span class="ws-hero__serif">A workshop for building&nbsp;</span>
+          <span class="ws-hero__sans">modular nesting</span>
+          <span class="ws-hero__sans">habitats for wild bees</span>
+        </h1>
+      </section>
+
+      <!-- ===== intro + stats + photo — Figma "Desktop - 8" (y564 h1721) ===== -->
+      <section class="ws-intro band">
+        <a class="ws-intro__eyebrow link-rule" href="#ws-stages">The workshop</a>
+
+        <h2 class="ws-intro__title">They are<br /><em>vanishing.</em></h2>
+
+        <p class="ws-intro__lede">
+          Wild bee populations are in dramatic decline and the city is a large
+          part of the problem. But it can also be a large part of the solution.
+        </p>
+
+        <div class="ws-stats">
+          <article class="ws-stat">
+            <p class="ws-stat__figure">10</p>
+            <p class="ws-stat__body">
+              Groups of 6–10 participants<br />
+              An intimate group that gives space to<br />
+              everyone and lets every nesting habitat<br />
+              grow at its own pace.
+            </p>
+          </article>
+          <article class="ws-stat">
+            <p class="ws-stat__figure">8+</p>
+            <p class="ws-stat__body">
+              Ages 8 and up<br />
+              Suitable for all ages kids, teens and<br />
+              adults guided by professional<br />
+              facilitators
+            </p>
+          </article>
+          <article class="ws-stat">
+            <p class="ws-stat__figure">h3</p>
+            <p class="ws-stat__body">
+              Experiential and shared<br />
+              A small group meeting working<br />
+              together with our hands, talking about<br />
+              bees and about what grows in the city.
+            </p>
+          </article>
+        </div>
+
+        <img class="ws-photo" src="assets/img/workshop/workshop-kids.jpg" alt="" />
+      </section>
+
+      <!-- ===== from soil to structure — Figma "Desktop - 13" (y2285 h687) ===== -->
+      <section class="ws-flow band">
+        <a class="ws-flow__eyebrow link-rule" href="#ws-stages">What happens in the workshop</a>
+
+        <h2 class="ws-flow__title"><span class="ws-flow__l1">From soil</span><br /><em>to</em><br />structure.</h2>
+
+        <ul class="ws-flow__list">
+          <li class="ws-flow__item">
+            <span class="ws-flow__badge" aria-hidden="true"></span>
+            <p>A short talk about wild bees and the urban nesting<br />crisis.</p>
+          </li>
+          <li class="ws-flow__item">
+            <span class="ws-flow__badge" aria-hidden="true"></span>
+            <p>Making the nesting modules: casting, drilling, drying.</p>
+          </li>
+          <li class="ws-flow__item">
+            <span class="ws-flow__badge" aria-hidden="true"></span>
+            <p>Each participant assembles their own modular nesting<br />habitat.</p>
+          </li>
+          <li class="ws-flow__item">
+            <span class="ws-flow__badge" aria-hidden="true"></span>
+            <p>Joint installation in the community garden.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== six stages — Figma "Desktop - 10" (y2972 h1047) ===== -->
+      <section class="ws-stages band" id="ws-stages">
+        <h2 class="ws-stages__title"><em>Six</em> stages.</h2>
+        <a class="ws-stages__eyebrow link-rule" href="#ws-stages">Process</a>
+
+        <div class="ws-stages__card">
+            <figure class="ws-stage ws-stage--1">
+              <img src="assets/img/stages/stage-1.png" alt="" />
+              <figcaption><span class="ws-stage__num">1</span><span class="ws-stage__label">Setting up the mold</span></figcaption>
+            </figure>
+            <figure class="ws-stage ws-stage--2">
+              <img src="assets/img/stages/stage-2.png" alt="" />
+              <figcaption><span class="ws-stage__num">2</span><span class="ws-stage__label">Mixing the casting materials</span></figcaption>
+            </figure>
+            <figure class="ws-stage ws-stage--3">
+              <img src="assets/img/stages/stage-3.png" alt="" />
+              <figcaption><span class="ws-stage__num">3</span><span class="ws-stage__label">Casting into the molds</span></figcaption>
+            </figure>
+            <figure class="ws-stage ws-stage--4">
+              <img src="assets/img/stages/stage-4.png" alt="" />
+              <figcaption><span class="ws-stage__num">4</span><span class="ws-stage__label">Drilling the nesting holes</span></figcaption>
+            </figure>
+            <figure class="ws-stage ws-stage--5">
+              <img src="assets/img/stages/stage-5.png" alt="" />
+              <figcaption><span class="ws-stage__num">5</span><span class="ws-stage__label">Drying</span></figcaption>
+            </figure>
+            <figure class="ws-stage ws-stage--6">
+              <img src="assets/img/stages/stage-6.png" alt="" />
+              <figcaption><span class="ws-stage__num">6</span><span class="ws-stage__label">Removal and placement</span></figcaption>
+            </figure>
+        </div>
+      </section>
+
+      {{> footer col2title="COMPANY"}}
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Design tokens — read directly out of the Figma file "bee"
+   (file affqk34oV3uE8a9dvIBJyZ). Do not invent values here.
+   ========================================================================== */
+
+:root {
+  /* ---- Colour ---------------------------------------------------------- */
+  --page-bg: #efefef;          /* page frame fill                          */
+  --blue: #2154dd;             /* primary blue (headings, links, buttons)  */
+  --ink: #1b283c;              /* H1 dark segment                          */
+  --ink-body: #1c2a3d;         /* body copy                                */
+  --ink-alt: #1e2b3b;          /* nav labels, section titles               */
+  --blue-muted: #9dafe2;       /* footer small text, video border          */
+  --blue-soft: #6682d0;        /* footer input placeholder                 */
+  --blue-pale: #cae0fc;        /* pale blue (card head, pill stroke)       */
+  --blush: #fff1f1;            /* blush white (pills, gradient base)       */
+  --blush-pink: #f1e3ef;        /* footer CTA button fill                   */
+  --logo-yellow: #faee6e;      /* logo circle                              */
+  --grey-line: #d9d9d9;        /* nav active underline                     */
+
+  /* ---- Type ------------------------------------------------------------ */
+  --font-serif: 'Source Serif Pro', 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Poppins', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Figma "AUTO" line-height resolves to the font default:
+     Poppins 1.5 · Source Serif Pro 1.25 */
+  --lh-auto-sans: 1.5;
+  --lh-auto-serif: 1.25;
+  --lh-132: 1.32;              /* explicit 132% used across the footer     */
+
+  /* ---- Geometry -------------------------------------------------------- */
+  --page-w: 1440px;            /* design frame width                       */
+  --gutter: 80px;              /* logo / footer left inset                 */
+  --r-card: 20px;
+  --r-footer: 32px;
+  --r-pill: 9999px;
+
+  /* ---- Elevation ------------------------------------------------------- */
+  --shadow-nav: 0 4px 4px rgba(0, 0, 0, 0.25);
+}

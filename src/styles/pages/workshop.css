@@ -1,0 +1,313 @@
+/* Workshop — Figma frame "Workshop page" (1440 x 4711)
+   hero "Desktop - 11" y0 h1024 · "Desktop - 8" y564 h1721
+   · "Desktop - 13" y2285 h687 · "Desktop - 10" y2972 h1024 · footer y4019 h692 */
+.hero {
+  height: 1024px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  /* cover the viewport, and never less than the 1440 design grid */
+  width: max(100vw, var(--page-w));
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1;
+  background: url('../../assets/gradients/hero-inner.jpg') no-repeat center top;
+  background-size: cover;
+}
+
+/* ---- hero headline ------------------------------------------------------
+   3 lines at 96/105. Line 1 is Source Serif Pro in ink; lines 2-3 are Poppins
+   in blue. Measured off the @2x export: cap line of line 1 at y228.
+   ------------------------------------------------------------------------- */
+.ws-hero__title {
+  position: absolute;
+  left: 0;
+  top: 219.5px;
+  width: 100%;
+  margin: 0;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 105px;
+  text-align: center;
+}
+
+.ws-hero__serif {
+  display: block;
+  font-family: var(--font-serif);
+  color: var(--ink);
+}
+
+.ws-hero__sans {
+  display: block;
+  position: relative;
+  /* Poppins sits lower in the line box than Source Serif Pro; Figma's
+     serif->sans step measures 104px against the 105px sans->sans step */
+  top: -5.5px;
+  font-family: var(--font-sans);
+  color: var(--blue);
+}
+
+/* ---- intro + stats + photo ---------------------------------------------
+   Band y564 h1721 (overlaps the hero). Measured off the @2x export:
+   eyebrow 120,196 · title 120,283 (64/74.5) · lede 561,311.5 (20/30)
+   stat cards 383x225 @ y589, x120/527/934 · figure 33,30 (46px serif)
+   body 32.5,92.5 (16/21) · photo 140,975 1160x651
+   ------------------------------------------------------------------------- */
+.ws-intro {
+  margin: -460px 0 0; /* 564 - 1024 */
+  height: 1721px;
+}
+
+.ws-intro__eyebrow {
+  position: absolute;
+  left: 120px;
+  top: 196px;
+  height: 33px;
+  /* measured 19px here, unlike the 18px eyebrows on Home */
+  font-size: 19px;
+}
+
+.ws-intro__title {
+  position: absolute;
+  left: 120px;
+  top: 281px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 74.5px;
+  color: var(--ink);
+}
+
+.ws-intro__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.ws-intro__lede {
+  position: absolute;
+  left: 561px;
+  top: 315px;
+  width: 630px;
+  margin: 0;
+  font-size: 20px;
+  line-height: var(--lh-auto-sans); /* 30px */
+  color: var(--ink-body);
+}
+
+.ws-stats {
+  position: absolute;
+  left: 120px;
+  top: 589px;
+  display: flex;
+  gap: 24px;
+}
+
+.ws-stat {
+  position: relative;
+  width: 383px;
+  height: 225px;
+  border-radius: var(--r-card);
+  background: #ffffff;
+}
+
+.ws-stat__figure {
+  position: absolute;
+  left: 33px;
+  top: 30px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 46px;
+  line-height: var(--lh-auto-serif);
+  color: var(--blue);
+}
+
+.ws-stat__body {
+  position: absolute;
+  left: 32.5px;
+  top: 89px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--ink-body);
+}
+
+.ws-photo {
+  position: absolute;
+  left: 140px;
+  top: 975px;
+  width: 1160px;
+  height: 651px;
+  border-radius: var(--r-card);
+  object-fit: cover;
+}
+
+/* ---- from soil to structure — Figma "Desktop - 13" (y2285 h687) ---------
+   eyebrow 120,1 (18px) · title 240,193 (64/95) · badges 43px @ x567.5
+   item text 643 (20/26), 35px gaps, badge sits 6px below each item top
+   ------------------------------------------------------------------------- */
+.ws-flow {
+  height: 687px;
+}
+
+.ws-flow__eyebrow {
+  position: absolute;
+  left: 120px;
+  top: 1px;
+  height: 33px;
+}
+
+.ws-flow__title {
+  position: absolute;
+  left: 240px;
+  top: 189px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  /* solved ink-to-ink against the export: 66px, not 64 */
+  font-size: 66px;
+  line-height: 95px;
+  color: var(--ink);
+}
+
+.ws-flow__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.ws-flow__list {
+  position: absolute;
+  left: 643px;
+  top: 202px;
+  width: 620px;
+}
+
+.ws-flow__item {
+  position: relative;
+  padding-left: 0;
+}
+
+.ws-flow__item + .ws-flow__item {
+  margin-top: 35px;
+}
+
+.ws-flow__item p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 26px;
+  color: var(--ink-body);
+}
+
+.ws-flow__badge {
+  position: absolute;
+  left: -75.5px; /* 567.5 - 643 */
+  top: 6px;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: #fbfbfb url('../../assets/img/bee-glyph.png') center / 24px auto no-repeat;
+}
+
+/* ---- six stages — Figma "Desktop - 10" (y2972 h1047) -------------------
+   title 120,102 (64) · Process eyebrow 1207,139 (20px)
+   card 120,234 1164x643.5 r32 · columns pitch 380 · rows pitch 330
+   each illustration is placed at its measured ink box
+   ------------------------------------------------------------------------- */
+.ws-stages {
+  height: 1047px;
+}
+
+.ws-stages__title {
+  position: absolute;
+  left: 120px;
+  top: 99px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 66px;
+  line-height: var(--lh-auto-serif);
+  color: var(--ink);
+}
+
+.ws-stages__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.ws-stages__eyebrow {
+  position: absolute;
+  left: 1207px;
+  top: 136.5px;
+  height: 33px;
+  font-size: 20px;
+}
+
+.ws-stages__card {
+  position: absolute;
+  left: 120px;
+  top: 234px;
+  width: 1164px;
+  height: 643.5px;
+  border-radius: var(--r-footer);
+  background: #ffffff;
+}
+
+.ws-stage {
+  position: absolute;
+  margin: 0;
+}
+
+.ws-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ws-stage figcaption {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.ws-stage__num {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.ws-stage__label {
+  position: absolute;
+  left: 37px; /* 229 - 192 */
+  top: 3px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--ink-body);
+}
+
+/* illustration ink boxes, card-relative (card origin 120,234 in the band) */
+.ws-stage--1 { left: 53.5px;  top: 24.5px; width: 281px;   height: 201.5px; }
+.ws-stage--2 { left: 442.5px; top: 37px;   width: 269px;   height: 162px; }
+.ws-stage--3 { left: 810px;   top: 36px;   width: 294.5px; height: 186px; }
+.ws-stage--4 { left: 47.5px;  top: 367px;  width: 309.5px; height: 177.5px; }
+.ws-stage--5 { left: 432.5px; top: 358.5px; width: 302px;  height: 192px; }
+.ws-stage--6 { left: 824.5px; top: 354px;  width: 280.5px; height: 173.5px; }
+
+/* captions are on the card grid, not the illustration box */
+.ws-stage--1 figcaption { left: 18.5px;  top: 234.5px; }
+.ws-stage--2 figcaption { left: 129.5px; top: 222px; }
+.ws-stage--3 figcaption { left: 22px;    top: 223px; }
+.ws-stage--4 figcaption { left: 24.5px;  top: 189px; }
+.ws-stage--5 figcaption { left: 139.5px; top: 197.5px; }
+.ws-stage--6 figcaption { left: 7.5px;   top: 201px; }
+
+/* Figma's first line sits 3px lower than a uniform 95px rhythm would put it */
+.ws-flow__l1 {
+  position: relative;
+  top: 3px;
+}

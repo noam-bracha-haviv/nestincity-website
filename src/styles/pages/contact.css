@@ -1,0 +1,200 @@
+/* Contact — Figma frame "Contact Page" (1440 x 2669)
+   hero "Desktop - 11" y0 h871 · "Desktop - 15" y800 h1040 · footer y1977 h692 */
+.hero {
+  height: 871px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  /* cover the viewport, and never less than the 1440 design grid */
+  width: max(100vw, var(--page-w));
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1;
+  background: url('../../assets/gradients/hero-inner.jpg') no-repeat center top;
+  background-size: cover;
+}
+
+/* ---- hero headline + contact chips --------------------------------------
+   Measured off the @2x export: cap line of line 1 at y243, pitch 104.
+   Chips y679 h54, x126 / 407 / 560 (18px gaps); icon 22px in, text ~10 after.
+   ------------------------------------------------------------------------- */
+.ct-hero__title {
+  position: absolute;
+  left: 0;
+  top: 234.5px;
+  width: 100%;
+  margin: 0;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 105px;
+  text-align: center;
+}
+
+.ct-hero__serif {
+  display: block;
+  position: relative;
+  /* Figma's line carries trailing whitespace, so its centred ink sits 33.75px
+     left of the page centre — matched here as a measured offset */
+  left: -33.75px;
+  font-family: var(--font-serif);
+  color: var(--ink);
+}
+
+.ct-hero__sans {
+  display: block;
+  position: relative;
+  top: -5.5px;
+  font-family: var(--font-sans);
+  color: var(--blue);
+}
+
+.ct-chips {
+  position: absolute;
+  left: 126px;
+  top: 679px;
+  display: flex;
+  gap: 18px;
+}
+
+.ct-chips a,
+.ct-chips span {
+  height: 54px;
+  padding: 0 23px 0 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--blue);
+  border-radius: var(--r-pill);
+  font-size: 16px;
+  color: var(--blue);
+  transition: background 0.18s ease;
+}
+
+.ct-chips a:hover {
+  background: rgba(33, 84, 221, 0.07);
+}
+
+/* ---- request form ------------------------------------------------------
+   Band y800 h1040 (overlaps the hero by 71px).
+   eyebrow 120,93 · title 120,136.5 (48px serif) · card 120,242 1200x705.5 r32
+   lede card-rel 48,33 (20/29) · photo 31,153 529x526.5
+   fields x605, 272 wide (14px gap) or 558 full, 55 tall, 26px gaps
+   ------------------------------------------------------------------------- */
+.ct-body {
+  margin: -71px 0 0; /* 800 - 871 */
+  height: 1040px;
+  scroll-margin-top: 40px; /* breathing room when arriving via #workshop-request */
+}
+
+.ct-body__eyebrow {
+  position: absolute;
+  left: 120px;
+  top: 93px;
+  height: 33px;
+}
+
+.ct-body__title {
+  position: absolute;
+  left: 120px;
+  top: 135px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 48px;
+  line-height: var(--lh-auto-serif);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.ct-body__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.ct-card {
+  position: absolute;
+  left: 120px;
+  top: 242px;
+  width: 1200px;
+  height: 705.5px;
+  border-radius: var(--r-footer);
+  background: #ffffff;
+}
+
+.ct-card__lede {
+  position: absolute;
+  left: 48px;
+  top: 36.5px;
+  margin: 0;
+  font-size: 20px;
+  line-height: 29px;
+  color: var(--ink-body);
+}
+
+.ct-card__photo {
+  position: absolute;
+  left: 31px;
+  top: 153px;
+  width: 529px;
+  height: 526.5px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.ct-form {
+  position: absolute;
+  left: 605px;
+  top: 26px;
+  width: 558px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px 14px;
+}
+
+.ct-field {
+  width: 558px;
+  height: 55px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: #e6e6e6;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink-body);
+}
+
+.ct-field--half {
+  width: 272px;
+}
+
+.ct-field--area {
+  height: 168px;
+  padding: 16px;
+  border-radius: 28px;
+  resize: none;
+  line-height: 24px;
+}
+
+.ct-field::placeholder {
+  color: #8a8a8a;
+  opacity: 1;
+}
+
+.ct-field:focus {
+  outline: 2px solid var(--blue-pale);
+  outline-offset: 1px;
+}
+
+.ct-submit {
+  width: 558px;
+  height: 56px;
+}
+
+/* footer band sits at y1977 in the Contact frame */
+.page--contact .footer {
+  margin-top: 137px; /* 1977 - 1840 */
+}

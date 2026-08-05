@@ -1,0 +1,997 @@
+/* ==========================================================================
+   Home — Figma frame "Homa page" (1440 x 7549)
+
+   band y-positions in the frame:
+     hero            "frame 1"              y    0   h  874
+     story           "Frame 2085652034"     y  998   h  611   (x 16, w 1408)
+     crisis          "Desktop - 6"          y 1758   h  889   (x 42, w 1356)
+     compare         "Desktop - 6"          y 2689   h  906
+     statement       "Desktop - 3"          y 3533   h  819
+     my-workshop     "Container"            y 4435   h  550   (x 16, w 1408)
+     press           "Container"            y 5006   h  907
+     groups          "Homepage"             y 5934   h  870
+     footer          "Frame 2085652029"     y 6857   h  692
+   ========================================================================== */
+
+/* ---- hero --------------------------------------------------------------- */
+.hero {
+  height: 874px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  /* cover the viewport, and never less than the 1440 design grid */
+  width: max(100vw, var(--page-w));
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: -1;
+  background: url('../../assets/gradients/hero-home.jpg') no-repeat center top;
+  background-size: cover;
+}
+
+.hero__inner {
+  position: absolute;
+  left: 304px;
+  top: 226px;
+  width: 832px;
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: var(--lh-auto-serif); /* 120px */
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--ink);
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.hero__lede {
+  margin: 16px 0 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: var(--lh-auto-sans); /* 36px */
+  text-align: center;
+  color: var(--ink-body);
+}
+
+/* ---- story ("The story, in three minutes") ------------------------------ */
+.story {
+  margin: 124px 0 0 16px; /* 998 - 874 */
+  width: 1408px;
+  height: 611px;
+}
+
+.story__title {
+  position: absolute;
+  left: 165px;
+  /* Figma: 434x24 box, bottom-aligned; measured against the export the cap
+     line lands at page y 995, i.e. -9 relative to the band */
+  top: -9px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 45px;
+  color: var(--ink-alt);
+  white-space: nowrap;
+}
+
+.story__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+/* "F 3" — 1408x469 @ y 67, r 20, clips */
+.story__frame {
+  position: absolute;
+  left: 0;
+  top: 67px;
+  width: 1408px;
+  height: 469px;
+  padding: 26px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+
+/* left panel — 654x417, r 20, clips the bee line-art */
+.story__stat {
+  position: relative;
+  width: 654px;
+  height: 417px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  flex: 0 0 auto;
+
+  /* Bee placement. Derived from the Figma image rect: a 1803x1803 axis-aligned
+     bounding box at page (-660,465), i.e. centred at page (241.5,1366.5) =
+     (199.5,275.5) panel-relative. For a square rotated by t the side is
+     1803/(|cos t|+|sin t|), so size and offset follow from --bee-rot alone.
+     --bee-rot is the one value still to be confirmed against the reference. */
+  /* PROVISIONAL until the reference image lands: sized so the full wingspan
+     reads across the panel as it does in the export. Four fits (ink NCC,
+     1-param IoU, 4-param IoU) all failed to converge because at the working
+     resolution the 1px linework falls below the noise floor. */
+  --bee-rot: -30deg;
+  --bee-side: 760px;
+  --bee-cx: 210px;
+  --bee-cy: 250px;
+  /* the asset is already drawn at 60% alpha; the export's stroke sits at ~20%
+     of full strength, so it needs about a third on top of that */
+  --bee-opacity: 0.33;
+}
+
+.story__stat::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--bee-cx) - var(--bee-side) / 2);
+  top: calc(var(--bee-cy) - var(--bee-side) / 2);
+  width: var(--bee-side);
+  height: var(--bee-side);
+  transform: rotate(var(--bee-rot));
+  opacity: var(--bee-opacity);
+  background: url('../../assets/img/bee-drawing-sharp-gray-60.png') center / contain no-repeat;
+  pointer-events: none;
+}
+
+.story__stat-figure {
+  position: absolute;
+  left: 167px;
+  top: 95px;
+  width: 320px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: var(--lh-auto-serif); /* 120px */
+  text-align: center;
+  color: var(--blue);
+}
+
+.story__stat-caption {
+  position: absolute;
+  left: 139px;
+  top: 250px;
+  width: 371px;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: var(--lh-auto-sans); /* 36px */
+  color: var(--ink);
+}
+
+.story__stat-caption em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+/* right panel — the video, 654x417, r 20, 3px inside stroke #9dafe2 */
+.story__video {
+  position: relative;
+  width: 654px;
+  height: 417px;
+  flex: 0 0 auto;
+  border: 3px solid var(--blue-muted);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--blush);
+}
+
+/* The source is 1280x894 with 86px black bars top and bottom (cropdetect:
+   crop=1280:722:0:86), so the real content is 1280x722. Scaling by
+   417/722 = 0.577562 makes that content exactly fill the 417px height; the
+   bars fall outside the container and only ~3% of the width is cropped. */
+.story__video video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 739.28px;   /* 1280 * 0.577562 */
+  height: 516.34px;  /* 894  * 0.577562 */
+  max-width: none;   /* the global img/video rule would cap this at 654 */
+  transform: translate(-50%, -50%);
+  object-fit: fill;  /* element already matches the video's aspect ratio */
+  cursor: pointer;
+}
+
+/* play / pause — visible when paused, on hover and on keyboard focus */
+.story__video-toggle {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--blush);
+  box-shadow: inset 0 0 0 1px var(--blue-pale);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+  z-index: 2;
+}
+
+.story__video:hover .story__video-toggle,
+.story__video-toggle:focus-visible,
+.story__video[data-paused='true'] .story__video-toggle {
+  opacity: 1;
+}
+
+.story__video-toggle::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: var(--blue);
+  /* pause bars by default */
+  clip-path: polygon(0 0, 38% 0, 38% 100%, 0 100%, 0 0, 62% 0, 100% 0, 100% 100%, 62% 100%, 62% 0);
+}
+
+.story__video[data-paused='true'] .story__video-toggle::before {
+  /* play triangle */
+  clip-path: polygon(10% 0, 100% 50%, 10% 100%);
+}
+
+/* mute / unmute, same pill treatment, sitting left of play/pause */
+.story__video-mute {
+  position: absolute;
+  right: 68px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--blush);
+  box-shadow: inset 0 0 0 1px var(--blue-pale);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.story__video:hover .story__video-mute,
+.story__video-mute:focus-visible,
+.story__video[data-muted='true'] .story__video-mute {
+  opacity: 1;
+}
+
+.story__video-mute::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 14px;
+  background: var(--blue);
+  /* speaker */
+  clip-path: polygon(0 32%, 34% 32%, 62% 4%, 62% 96%, 34% 68%, 0 68%);
+}
+
+/* a bar across the speaker when muted */
+.story__video-mute::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--blue);
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+
+.story__video[data-muted='true'] .story__video-mute::after {
+  opacity: 1;
+}
+
+.story__more {
+  position: absolute;
+  left: 1186px;
+  top: 554px;
+  width: 117px;
+  /* Figma "Metrics_item" is 117x33 with the rule on the bottom edge */
+  height: 33px;
+}
+
+/* ---- crisis ("They are vanishing.") -------------------------------------
+   Card 1356x889 @ (42,1758), r 20. Measured off the @2x export:
+   eyebrow 128,157 · title 128,240 (64/80) · callout 541,258 688x126 r20
+   facts 128,452 (18/27, 14px dots) · detail 557,475 · rule 548,715
+   -------------------------------------------------------------------------- */
+.crisis {
+  margin: 149px 0 0 42px; /* 1758 - 1609 */
+  width: 1356px;
+  /* 889 in Figma; trimmed 150px of empty space top and bottom on request,
+     content shifted up 60px so it stays vertically balanced */
+  height: 739px;
+  border-radius: var(--r-card);
+  background: #ffffff;
+}
+
+.crisis__eyebrow {
+  position: absolute;
+  left: 128px;
+  top: 97px;
+  height: 33px;
+}
+
+.crisis__title {
+  position: absolute;
+  left: 128px;
+  top: 178px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: var(--lh-auto-serif); /* 80px */
+  color: var(--ink);
+}
+
+.crisis__title em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+.crisis__callout {
+  position: absolute;
+  left: 541px;
+  top: 198px;
+  width: 688px;
+  height: 126px;
+  margin: 0;
+  padding: 18px 30px;
+  border-radius: var(--r-card);
+  background: #f4e4ed;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  line-height: var(--lh-auto-sans); /* 30px */
+  color: var(--ink-body);
+}
+
+.crisis__facts {
+  position: absolute;
+  left: 128px;
+  top: 396px;
+  width: 364px;
+}
+
+.crisis__facts li {
+  position: relative;
+  padding-left: 37px; /* 14px dot + 23px gap */
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--ink-body);
+}
+
+.crisis__facts li + li {
+  margin-top: 35px;
+}
+
+.crisis__facts li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink-body);
+}
+
+.crisis__detail {
+  position: absolute;
+  left: 557px;
+  top: 419px;
+  width: 706px;
+}
+
+.crisis__detail p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--ink-body);
+}
+
+/* the rule is its own run, narrower than the paragraph and offset left of it */
+.crisis__rule {
+  position: absolute;
+  left: 548px;
+  top: 655px;
+  width: 677px;
+  height: 1px;
+  background: var(--ink-body);
+}
+
+/* ---- compare (Wild bees / The honeybee) ---------------------------------
+   Measured off the @2x export, page coords -> band-relative (band y 2689):
+   cards 588 wide @ x99 / x753, y108 · head 136 tall (#c9dffb / #f4e96d)
+   name 61,23 (24px) · sub 62,85 (18/27) · traits: glyph x67, text x114,
+   first line top 195 (18/27), 26px gaps, +11 before the last item
+   lede 99,628 (24/37) · button 99,742 187x56
+   -------------------------------------------------------------------------- */
+.compare {
+  margin: 42px 0 0; /* 2689 - 2647 */
+  height: 906px;
+}
+
+.species {
+  position: absolute;
+  top: 108px;
+  width: 588px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.species--wild {
+  left: 99px;
+  height: 467px;
+}
+
+.species--honey {
+  left: 753px;
+  height: 462px;
+}
+
+.species__head {
+  height: 136px;
+  padding: 23px 0 0 61px;
+}
+
+.species--wild .species__head {
+  background: #c9dffb;
+}
+
+.species--honey .species__head {
+  background: #f4e96d;
+}
+
+.species__name {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: var(--lh-auto-sans); /* 36px */
+  color: var(--ink-body);
+}
+
+.species__sub {
+  margin: 26px 0 0 1px; /* ink lands at card-relative y 85 */
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--ink-body);
+}
+
+.species__traits {
+  padding: 54px 0 0 67px;
+}
+
+.species__traits li {
+  position: relative;
+  padding-left: 46px; /* 19px glyph + 27px gap */
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--ink-body);
+}
+
+.species__traits li + li {
+  margin-top: 26px;
+}
+
+/* the honeybee card is spaced 23.5px, which is why it ends 5px higher */
+.species--honey .species__traits li + li:not(.species__traits-last) {
+  margin-top: 23.5px;
+}
+
+/* Figma leaves an extra 11px before the final trait on both cards.
+   Needs to outrank the per-card gap rule above. */
+.species__traits li.species__traits-last {
+  margin-top: 37px;
+}
+
+.species__traits li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 19px;
+  height: 19px;
+  background: url('../../assets/img/bee-glyph.png') center / cover no-repeat;
+}
+
+.species--honey .species__traits li::before {
+  width: 23px;
+  height: 17px;
+  top: 5px;
+}
+
+.compare__lede {
+  position: absolute;
+  left: 99px;
+  top: 621px;
+  width: 970px;
+  margin: 0;
+  font-size: 24px;
+  line-height: 37px;
+  color: var(--ink-body);
+}
+
+.compare__cta {
+  position: absolute;
+  left: 99px;
+  top: 742px;
+  width: 187px;
+  height: 56px;
+}
+
+/* ---- statement ("Nesting in the City bringing nature back…") -------------
+   Band y3533 h819, overlapping the compare band by 62px.
+   Paragraph: measured off the @2x export — 40/56, centred on x720, the cap
+   line of line 1 at page y 3900.5 (band-relative 349 for the line box).
+   Bee placements: PENDING confirmation of the Figma image-fill transform.
+   Measured visible extents in the export, for tuning:
+     top-right bee  ink from x808.5, cut off by the canvas at x1440 / y3533
+     bottom-left bee ink to x494,   cut off by the canvas at x0    / y4352
+   -------------------------------------------------------------------------- */
+.statement {
+  margin: -62px 0 0; /* 3533 - 3595 */
+  height: 819px;
+  overflow: hidden;
+
+  /* tune these four pairs once the Figma transform is known */
+  --bee-tr-w: 620px;
+  --bee-tr-right: -120px;
+  --bee-tr-top: -170px;
+  --bee-tr-rot: -30deg;
+
+  --bee-bl-w: 620px;
+  --bee-bl-left: -170px;
+  --bee-bl-top: 430px;
+  --bee-bl-rot: -30deg;
+}
+
+.statement__bee {
+  position: absolute;
+  width: var(--bee-tr-w);
+  height: auto;
+  pointer-events: none;
+  /* Figma draws these decorative placements very faintly (~20% strength).
+     The sharp asset is already at 60% alpha, so 0.33 keeps the same weight. */
+  opacity: 0.33;
+}
+
+.statement__bee--tr {
+  right: var(--bee-tr-right);
+  top: var(--bee-tr-top);
+  transform: rotate(var(--bee-tr-rot));
+}
+
+.statement__bee--bl {
+  width: var(--bee-bl-w);
+  left: var(--bee-bl-left);
+  top: var(--bee-bl-top);
+  transform: rotate(var(--bee-bl-rot));
+}
+
+.statement__text {
+  position: absolute;
+  left: 0;
+  top: 354.5px;
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  /* measured: the Figma text node is scaled, so the effective size is 36.3,
+     not a round 36 — Poppins matches Chrome exactly at 18px and 24px. */
+  font-size: 36.3px;
+  line-height: 55.5px;
+  text-align: center;
+  color: var(--ink-body);
+}
+
+.statement__text em {
+  font-style: normal;
+  color: var(--blue);
+}
+
+/* ---- my workshop --------------------------------------------------------
+   Figma "Container" 1408x550 @ (16,4435), r32, white. Measured off the export:
+   heading 66,76 (64/62, all blue) · body 64,271 (16/24)
+   buttons 64,414 187x56 and 280,414 171x56
+   yellow habitat panel 875,27 509x497 r20 (#faee6e) — exported as one tile
+   -------------------------------------------------------------------------- */
+.myworkshop {
+  margin: 83px 0 0 16px; /* 4435 - 4352 */
+  width: 1408px;
+  height: 550px;
+  border-radius: var(--r-footer);
+  background: #ffffff;
+}
+
+.myworkshop__title {
+  position: absolute;
+  left: 64px;
+  top: 71px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 62px;
+  color: var(--blue);
+}
+
+.myworkshop__body {
+  position: absolute;
+  left: 64px;
+  top: 273.5px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--ink-body);
+}
+
+.myworkshop__actions {
+  position: absolute;
+  left: 64px;
+  top: 414px;
+  display: flex;
+  gap: 29px; /* 280 - (64 + 187) */
+}
+
+.myworkshop__actions .btn {
+  height: 56px;
+}
+
+.myworkshop__actions .btn--primary {
+  width: 187px;
+}
+
+.myworkshop__actions .btn--secondary {
+  width: 171px;
+}
+
+.myworkshop__panel {
+  position: absolute;
+  left: 875px;
+  top: 27px;
+  width: 509px;
+  height: 497px;
+  border-radius: var(--r-card);
+}
+
+/* ---- press carousel -----------------------------------------------------
+   Band y5006 h907. Measured off the @2x export:
+   heading 64,121 (56/62) · arrows 1257,174 + 1321,174 (56px, 1px #2154dd)
+   strip top 278.5 · cards 382 wide, pitch 398 · inactive 488.5 tall @ +5.5,
+   active 500 tall @ +0 (same centre line)
+   card internals: chip 32,33 h40 (18px, hugging) · logo box 32,140 h110
+   title 52,298 (32px serif) · body 51.5,347 (12/16) · link 56.5,421 (18px)
+   -------------------------------------------------------------------------- */
+.press {
+  margin: 21px 0 0; /* 5006 - 4985 */
+  height: 907px;
+}
+
+.press__title-main {
+  position: absolute;
+  left: 64px;
+  top: 121px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 62px;
+  color: var(--blue);
+}
+
+.press__nav {
+  position: absolute;
+  left: 1257px;
+  top: 174px;
+  display: flex;
+  gap: 8px;
+}
+
+.press__arrow {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background 0.18s ease;
+}
+
+.press__arrow:hover {
+  background: rgba(33, 84, 221, 0.07);
+}
+
+/* The viewport spans the whole browser width; the strip inside it is shifted
+   back by half the overshoot so the cards keep their Figma x positions. */
+.press__viewport {
+  position: absolute;
+  left: 50%;
+  top: 278.5px;
+  width: max(100vw, var(--page-w));
+  height: 500px;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+.press__strip {
+  position: absolute;
+  /* card 3 (GreenMe) lands at -267 and card 4 at 131 on the 1440 grid */
+  left: calc(-1063px + (max(100vw, var(--page-w)) - var(--page-w)) / 2);
+  top: 0;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 100%;
+  cursor: grab;
+  touch-action: pan-y;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.press__strip.is-dragging {
+  cursor: grabbing;
+  transition: none;
+}
+
+.press__card,
+.press__card * {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.press__card {
+  position: relative;
+  flex: 0 0 382px;
+  width: 382px;
+  height: 488.5px;
+  border-radius: 24px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.press__card--active {
+  height: 500px;
+  background: var(--blue);
+  color: #ffffff;
+}
+
+/* makes the whole card a click target for the same article; the visible
+   "Read article" anchor stays the keyboard/AT target */
+.press__card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.press__chip {
+  position: absolute;
+  left: 32px;
+  top: 33px;
+  height: 40px;
+  margin: 0;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--ink-body);
+  border-radius: var(--r-pill);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink-body);
+  white-space: nowrap;
+}
+
+.press__card--active .press__chip {
+  top: 32.5px;
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.press__logo {
+  position: absolute;
+  left: 24px;   /* logo area centres on card-relative x183, not x191 */
+  top: 126px;
+  width: 318px;
+  height: 110px;
+  display: grid;
+  place-items: center;
+}
+
+.press__logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Each logo has its own size in Figma rather than filling a shared box.
+   The five sizes below are measured off the @2x export (these cards are the
+   ones on screen at rest). The four cards that sit off-canvas at rest are
+   sized by height from the carousel reference, preserving each asset's aspect. */
+[data-card='designboom'] .press__logo img { width: 219px; height: 36px; }
+[data-card='artsthread'] .press__logo img { width: 210px; height: 92px; }
+[data-card='disainioo'] .press__logo img { width: 198px; height: 107px; }
+[data-card='greenme'] .press__logo img { width: 234px; height: 72px; }
+[data-card='inovasocial'] .press__logo img { width: 209px; height: 82.5px; }
+
+[data-card='designvid'] .press__logo img { height: 66px; width: auto; }
+[data-card='bezalel'] .press__logo img { height: 41px; width: auto; }
+[data-card='materialdistrict'] .press__logo img { height: 60px; width: auto; }
+[data-card='neozone'] .press__logo img { height: 39px; width: auto; }
+
+.press__card--active .press__logo {
+  top: 132px;
+}
+
+.press__title {
+  position: absolute;
+  left: 52px;
+  top: 296px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 32.5px;
+  line-height: var(--lh-auto-serif);
+  color: var(--blue);
+}
+
+.press__card--active .press__title {
+  top: 303px;
+  color: #ffffff;
+}
+
+/* Bezalel is the only two-line title: at the shared top it ran into the body
+   copy, so it starts high enough to leave 20px clear below its second line
+   (2 x 32.5px x 1.25 = 81.25px tall; body sits at 349.5 / 355.5 when active) */
+[data-card='bezalel'] .press__title {
+  top: 248px;
+}
+
+.press__card--active[data-card='bezalel'] .press__title {
+  top: 254px;
+}
+
+.press__body {
+  position: absolute;
+  left: 51.5px;
+  top: 349.5px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-body);
+}
+
+.press__card--active .press__body {
+  top: 355.5px;
+  color: #ffffff;
+}
+
+.press__link {
+  position: absolute;
+  left: 56.5px;
+  top: 424px;
+  display: flex;
+  align-items: center;
+  gap: 9.5px;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--blue);
+}
+
+.press__link span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.press__card--active .press__link {
+  top: 425.5px;
+  color: #ffffff;
+}
+
+.press__card--active .press__link-arrow {
+  /* the glyph is transparent-backed, so this recolours just the ink to white */
+  filter: brightness(0) invert(1);
+}
+
+/* GreenMe's asset carries a little asymmetric vertical padding; nudge it so its
+   ink lands on the Figma cap line like the others. */
+[data-card='greenme'] .press__logo {
+  top: 121.5px;
+}
+
+/* ---- groups ("A community garden? A school? A group?") -------------------
+   Band y5934 h870. Measured off the @2x export:
+   heading 80,105 (56/62, blue) · body 846,93 (18/27) · button 845,236 175x56
+   photo strip y360 h484 · frames 540 wide, 8px gap (548 pitch), first at -372
+   -------------------------------------------------------------------------- */
+.groups {
+  margin: 21px 0 0; /* 5934 - 5913 */
+  height: 870px;
+}
+
+.groups__title {
+  position: absolute;
+  left: 80px;
+  top: 104px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 62px;
+  color: var(--blue);
+}
+
+.groups__body {
+  position: absolute;
+  left: 846px;
+  top: 96.5px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--ink-body);
+}
+
+.groups__cta {
+  position: absolute;
+  left: 845px;
+  top: 236px;
+  width: 175px;
+  height: 56px;
+}
+
+.groups__strip {
+  position: absolute;
+  left: -372px;
+  top: 365px;   /* page y6299 */
+  height: 478px;
+  display: flex;
+  gap: 8px;
+  cursor: grab;
+  touch-action: pan-y;          /* let the page scroll vertically through it */
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.groups__strip.is-dragging {
+  cursor: grabbing;
+  transition: none;             /* follow the pointer 1:1 while dragging */
+}
+
+.groups__strip img {
+  flex: 0 0 540px;
+  width: 540px;
+  height: 478px;
+  border-radius: var(--r-card);
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Sources are the originals in "pic/"; the vertical crop positions below were
+   solved against the export (garden-02 sits at 57%, not centred). */
+.groups__strip img:nth-child(1) { object-position: 50% 50%; }
+.groups__strip img:nth-child(2) { object-position: 50% 57%; }
+.groups__strip img:nth-child(3) { object-position: 50% 50%; }
+.groups__strip img:nth-child(4) { object-position: 50% 50%; }
+
+/* Footer band sits at y6857 in the Home frame. The bands above it now add up
+   to 6654 rather than 6804, because the "They are vanishing" card was trimmed
+   by 150px on request, so this offset carries that 150px to keep the footer on
+   its original line. Only the space above the footer changes; the footer's own
+   layout is untouched. */
+.page--home .footer {
+  margin-top: 203px; /* 6857 - 6654 */
+}

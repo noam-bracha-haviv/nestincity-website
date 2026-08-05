@@ -1,0 +1,32 @@
+<!-- Shared header — Figma "Nav bar" (1440 x 152).
+     Logo 69x65 at (80,43) · nav labels at y=63 · end pill 69x65 at (1291,43).
+     `end` = the cart pill on every page. -->
+<header class="header">
+  <a class="header__logo" href="index.html" aria-label="Nest in City — home">
+    <img src="assets/svg/logo-bee.png" alt="" width="47" height="35" />
+  </a>
+
+  <nav class="nav" aria-label="Main">
+    <ul class="nav__list">
+      <li class="nav__item">
+        <a href="index.html" {{#if is_home}}aria-current="page"{{/if}}>Home</a>
+      </li>
+      <li class="nav__item">
+        <a href="workshop.html" {{#if is_workshop}}aria-current="page"{{/if}}>Work Shop</a>
+      </li>
+      <li class="nav__item">
+        <a href="shop.html" {{#if is_shop}}aria-current="page"{{/if}}>Shop</a>
+      </li>
+      <li class="nav__item">
+        <a href="contact.html" {{#if is_contact}}aria-current="page"{{/if}}>Contact</a>
+      </li>
+      <!-- The Figma nav lists About, but the file contains no About frame, so the
+           label is rendered exactly as designed without a destination. -->
+      <li class="nav__item nav__item--inert"><span>About</span></li>
+    </ul>
+  </nav>
+
+  <div class="header__end header__end--cart">
+    <img src="assets/svg/cart.svg" alt="Cart" width="22" height="20" />
+  </div>
+</header>

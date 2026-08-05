@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Header — Figma "Nav bar" frame, 1440 x 152
+   Logo   : Ellipse 69x65 @ (80,43), fill #faee6e, 1px inside stroke #fff1f1
+            image 47x35 @ (91,58)  ->  (11,15) inside the logo
+   Labels : Poppins Bold 16 / auto (24px) #1e2b3b, baseline row top = 63
+            x: Home 506 · Work Shop 589 · Shop 710 · Contact 784 · About 883
+            => gaps 34, 32, 32, 32 · group centred on 720
+   End    : Ellipse 69x65 @ (1291,43) = 80px from the right edge
+   ========================================================================== */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 152px;
+  z-index: 10;
+}
+
+/* ---- logo ---------------------------------------------------------------- */
+.header__logo {
+  position: absolute;
+  left: var(--gutter);
+  top: 43px;
+  width: 69px;
+  height: 65px;
+  border-radius: 50%;
+  background: var(--logo-yellow);
+  /* Figma stroke is INSIDE, so it must not affect the box */
+  box-shadow: inset 0 0 0 1px var(--blush);
+}
+
+.header__logo img {
+  position: absolute;
+  left: 11px;
+  top: 15px;
+  width: 47px;
+  height: 35px;
+}
+
+/* ---- nav ---------------------------------------------------------------- */
+.nav {
+  position: absolute;
+  /* pinned to the measured Figma ink origin (x 506) rather than optically
+     centred, so the label row lands on the same pixel as the design */
+  left: 505px;
+  top: 65px;
+  display: flex;
+}
+
+.nav__list {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/* Figma's first gap is 34px, the rest 32px */
+.nav__item:first-child {
+  margin-right: 2px;
+}
+
+.nav__item > a,
+.nav__item > span {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: var(--lh-auto-sans); /* 24px */
+  letter-spacing: 0;
+  color: var(--ink-alt);
+  /* room for the 4px underline sitting 3px below the label (Figma
+     "Rectangle 5", collapsed to width 0 in the resting state) */
+  padding-bottom: 7px;
+  position: relative;
+}
+
+.nav__item > a::after,
+.nav__item > span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  background: var(--blue);
+  transition: width 0.18s ease;
+}
+
+.nav__item > a:hover::after,
+.nav__item > span:hover::after {
+  width: 100%;
+}
+
+.nav__item--inert > span {
+  cursor: default;
+}
+
+/* ---- end pill ----------------------------------------------------------- */
+.header__end {
+  position: absolute;
+  right: var(--gutter);
+  top: 43px;
+  width: 69px;
+  height: 65px;
+  border-radius: 50%;
+  background: var(--blush);
+  box-shadow: inset 0 0 0 1px var(--blue-pale);
+  display: grid;
+  place-items: center;
+}
+
+.header__end--he span {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.15;
+  color: var(--blue);
+}
+
+.header__end--cart img {
+  width: 21.75px;
+  height: 19.5px;
+  color: var(--blue);
+}

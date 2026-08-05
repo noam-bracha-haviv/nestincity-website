@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Buttons — Figma "Boutons" component
+   Primary  : fill #2154dd, r 3000, label Poppins 500 14 / 132% ls -1% #fff
+   Secondary: 1px #2154dd, r 3000, label Poppins 500 14 / 132% ls -1% #2154dd
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 4px 24px;
+  border-radius: 3000px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: var(--lh-132);
+  letter-spacing: -0.01em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.btn--primary {
+  background: var(--blue);
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background: #1a45bd;
+}
+
+.btn--secondary {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.btn--secondary:hover {
+  background: rgba(33, 84, 221, 0.06);
+}
+
+/* Underlined section link — Figma "Metrics_item":
+   label Poppins 400 18 / 132% #2154dd at 72% opacity, 1px #2154dd rule below */
+.link-rule {
+  display: inline-block;
+  border-bottom: 1px solid var(--blue);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: var(--lh-132);
+  color: var(--blue);
+  opacity: 0.72;
+  transition: opacity 0.18s ease;
+}
+
+.link-rule:hover {
+  opacity: 1;
+}

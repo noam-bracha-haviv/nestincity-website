@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> head}}
+  </head>
+  <body>
+    <div class="page page--home">
+      {{> header}}
+
+      <!-- ===== hero — Figma "frame 1" (1440x874) ===== -->
+      <section class="hero band">
+        <div class="hero__inner">
+          <h1 class="hero__title">Nesting <em>in the city</em></h1>
+          <p class="hero__lede">
+            When we say "bee," most of us picture the honeybee. But she is just
+            one species out of more than twenty two thousand. A workshop that
+            teaches who they really are and builds them a home.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== story — Figma "Frame 2085652034" (1408x611 @ x16,y998) ===== -->
+      <section class="story band">
+        <h2 class="story__title">The story, <em>in three minutes</em></h2>
+
+        <div class="story__frame">
+          <div class="story__stat">
+            <p class="story__stat-figure">22,000+</p>
+            <p class="story__stat-caption">
+              bee species in the world, Most<br />of us know&nbsp;<em>one</em>
+            </p>
+          </div>
+
+          <div class="story__video">
+            <video
+              src="assets/video/story.mp4"
+              poster="assets/video/story-poster.jpg"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+            <button class="story__video-toggle" type="button" aria-label="Pause video" aria-pressed="true"></button>
+            <button class="story__video-mute" type="button" aria-label="Unmute video" aria-pressed="false"></button>
+          </div>
+        </div>
+
+        <a class="story__more link-rule" href="workshop.html">What? what?</a>
+      </section>
+
+      <!-- ===== crisis — Figma "Desktop - 6" (1356x889 @ x42,y1758) ===== -->
+      <section class="crisis band">
+        <a class="crisis__eyebrow link-rule" href="workshop.html">The crisis</a>
+
+        <h2 class="crisis__title">They are<br /><em>vanishing.</em></h2>
+
+        <p class="crisis__callout">
+          Wild bee populations are in dramatic decline and the city is a large
+          part of the problem. But it can also be a large part of the solution.
+        </p>
+
+        <ul class="crisis__facts">
+          <li>A single small urban garden can sustain a whole population for years.</li>
+          <li>More than 1,250 species of wild bees are documented in Israel.</li>
+          <li>A single visit by a wild bee equals dozens of honeybee visits.</li>
+        </ul>
+
+        <div class="crisis__detail">
+          <p>
+            In the past twenty years, up to 40% of wild bee populations have<br />
+            disappeared.<br />
+            The causes accumulate open land turned to concrete, pesticides, climate<br />
+            change and above<br />
+            all, the disappearance of nesting habitats.<br />
+            A nesting habitat in a community garden is an<br />
+            active extension<br />
+            of nature into the place where it is most missing.
+          </p>
+        </div>
+
+        <div class="crisis__rule" aria-hidden="true"></div>
+      </section>
+
+      <!-- ===== compare — Figma "Desktop - 6" (y2689 h906) ===== -->
+      <section class="compare band">
+        <article class="species species--wild">
+          <header class="species__head">
+            <h3 class="species__name">Wild bees</h3>
+            <p class="species__sub">22,000+ species · 1,100 in Israel alone</p>
+          </header>
+          <ul class="species__traits">
+            <li>Most are solitary no hive, no queen, no honey.</li>
+            <li>Pollinators many times more efficient than the honeybee.</li>
+            <li>Almost never sting. Too busy working.</li>
+            <li class="species__traits-last">In decline under threat</li>
+          </ul>
+        </article>
+
+        <article class="species species--honey">
+          <header class="species__head">
+            <h3 class="species__name">The honeybee</h3>
+            <p class="species__sub">Apis mellifera · one familiar species</p>
+          </header>
+          <ul class="species__traits">
+            <li>Most are solitary no hive, no queen, no honey.</li>
+            <li>Pollinators many times more efficient than the honeybee.</li>
+            <li>Almost never sting. Too busy working.</li>
+            <li class="species__traits-last">In decline under threat</li>
+          </ul>
+        </article>
+
+        <p class="compare__lede">
+          They've been working for us for millions of years. Now is the time to
+          stop, to know them and to build them a home.
+        </p>
+
+        <a class="compare__cta btn btn--primary" href="contact.html#workshop-request">Book a Workshop</a>
+      </section>
+
+      <!-- ===== statement — Figma "Desktop - 3" (y3533 h819) =====
+           The two bee placements use CSS variables (see .statement in
+           home.css) because the image-fill transform is still to be confirmed
+           against Figma; the paragraph is measured and final. -->
+      <section class="statement band">
+        <img class="statement__bee statement__bee--tr" src="assets/img/bee-drawing-sharp-gray-60.png" alt="" />
+        <img class="statement__bee statement__bee--bl" src="assets/img/bee-drawing-sharp-gray-60.png" alt="" />
+
+        <p class="statement__text">
+          <em>Nesting in the City</em> bringing nature back to the community
+          garden,<br />to the street, to the home.
+        </p>
+      </section>
+
+      <!-- ===== my workshop — Figma "Container" (1408x550 @ x16,y4435) ===== -->
+      <section class="myworkshop band">
+        <h2 class="myworkshop__title">
+          My workshop<br />Build a home for wild<br />bees.
+        </h2>
+
+        <p class="myworkshop__body">
+          Three hours of hands on work and at the end,<br />
+          a real nesting habitat that goes up in your community garden.
+        </p>
+
+        <div class="myworkshop__actions">
+          <a class="btn btn--primary" href="contact.html#workshop-request">Book a Workshop</a>
+          <a class="btn btn--secondary" href="workshop.html">Workshop Details</a>
+        </div>
+
+        <img class="myworkshop__panel" src="assets/img/habitat-panel.png" alt="" />
+      </section>
+
+      <!-- ===== press carousel — Figma "Container" (y5006 h907) =====
+           Cards 382 wide on a 398px pitch (16px gap); the active card is 500
+           tall against 488.5 for the rest, sharing the same centre line. -->
+      <section class="press band">
+        <h2 class="press__title-main">Featured in design &amp; sustainability<br />platforms</h2>
+
+        <div class="press__nav">
+          <button class="press__arrow" type="button" data-dir="-1" aria-label="Previous">
+            <img src="assets/svg/arrow-left.png" alt="" width="15" height="13" />
+          </button>
+          <button class="press__arrow" type="button" data-dir="1" aria-label="Next">
+            <img src="assets/svg/arrow-right.png" alt="" width="15" height="13" />
+          </button>
+        </div>
+
+        <div class="press__viewport">
+          <div class="press__strip">
+          <article class="press__card" data-card="designvid">
+            <p class="press__chip">Czech press · Design</p>
+            <div class="press__logo"><img src="assets/img/press/press-designvid.png" alt="" /></div>
+            <h3 class="press__title">DesignVid</h3>
+            <p class="press__body">A modular DIY kit that combines creativity,<br />
+              learning, and ecological awareness.</p>
+            <a class="press__link" href="https://www.designvid.cz/produkty/nestincity-je-modularni-stavebnice-nejen-pro-deti-tvorici-mala-mesta-fungujici-jako-vceli-uly.html" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>View article</span>
+            </a>
+            <a class="press__card-overlay" href="https://www.designvid.cz/produkty/nestincity-je-modularni-stavebnice-nejen-pro-deti-tvorici-mala-mesta-fungujici-jako-vceli-uly.html" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="bezalel">
+            <p class="press__chip">Final progect · Design</p>
+            <div class="press__logo"><img src="assets/img/press/press-bezalel.svg" alt="" /></div>
+            <h3 class="press__title">Academy of Art<br />and design Bzalel</h3>
+            <p class="press__body">Workshop for Creating Modular Nesting<br />
+              Habitats for Wild Bees.</p>
+            <a class="press__link" href="https://2023.bezalel.ac.il/projects/%d7%a7%d7%99%d7%a0%d7%95%d7%9f-%d7%91%d7%a2%d7%99%d7%a8/" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>View project</span>
+            </a>
+            <a class="press__card-overlay" href="https://2023.bezalel.ac.il/projects/%d7%a7%d7%99%d7%a0%d7%95%d7%9f-%d7%91%d7%a2%d7%99%d7%a8/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="greenme">
+            <p class="press__chip">Italian press · Environment</p>
+            <div class="press__logo"><img src="assets/img/press/press-greenme.png" alt="" /></div>
+            <h3 class="press__title">GreenMe</h3>
+            <p class="press__body">An eco conscious initiative promoting<br />
+              biodiversity and protection of wild bees.</p>
+            <a class="press__link" href="https://www.greenme.it/ambiente/buone-pratiche-e-case-history/mattoni-in-argilla-salvare-api-selvatiche/" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>Read article</span>
+            </a>
+            <a class="press__card-overlay" href="https://www.greenme.it/ambiente/buone-pratiche-e-case-history/mattoni-in-argilla-salvare-api-selvatiche/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="designboom">
+            <p class="press__chip">International press</p>
+            <div class="press__logo"><img src="assets/img/press/press-designboom.png" alt="" /></div>
+            <h3 class="press__title">Designboom</h3>
+            <p class="press__body">A modular solution for creating nesting<br />
+              spaces for wild bees, combining design<br />
+              and environmental impact.</p>
+            <a class="press__link" href="https://www.designboom.com/design/nestincity-project-modular-nests-wild-bees-cast-soil-bracha-haviv-08-10-2023/" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>Read article</span>
+            </a>
+            <a class="press__card-overlay" href="https://www.designboom.com/design/nestincity-project-modular-nests-wild-bees-cast-soil-bracha-haviv-08-10-2023/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card press__card--active" data-card="artsthread">
+            <p class="press__chip">Czech press · Design</p>
+            <div class="press__logo"><img src="assets/img/press/press-artsthread.png" alt="" /></div>
+            <h3 class="press__title">Arts Thread</h3>
+            <p class="press__body">Finalist in the Arts Thread Global<br />
+              Graduation Show, recognized among<br />
+              leading international design projects.</p>
+            <a class="press__link" href="https://www.artsthread.com/profile/bracha-haviv" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>View project</span>
+            </a>
+            <a class="press__card-overlay" href="https://www.artsthread.com/profile/bracha-haviv" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="disainioo">
+            <p class="press__chip">Exhibitions</p>
+            <div class="press__logo"><img src="assets/img/press/press-disainioo.png" alt="" /></div>
+            <h3 class="press__title">disainioo</h3>
+            <p class="press__body">Presented at the Tallinn Design Festival,<br />
+              reaching an international audience of<br />
+              designers and environmental thinkers.</p>
+            <a class="press__link" href="https://www.disainioo.ee/about#festival" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>Read article</span>
+            </a>
+            <a class="press__card-overlay" href="https://www.disainioo.ee/about#festival" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="inovasocial">
+            <p class="press__chip">Brazilian press · Impact</p>
+            <div class="press__logo"><img src="assets/img/press/press-inovasocial.svg" alt="" /></div>
+            <h3 class="press__title">Inova Social</h3>
+            <p class="press__body">A project connecting community,<br />
+              education, and environmental impact.</p>
+            <a class="press__link" href="https://inovasocial.com.br/solucoes-de-impacto/nestincity-ninhos-modulares-abelhas-jerusalem/" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>Read article</span>
+            </a>
+            <a class="press__card-overlay" href="https://inovasocial.com.br/solucoes-de-impacto/nestincity-ninhos-modulares-abelhas-jerusalem/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="materialdistrict">
+            <p class="press__chip">International press</p>
+            <div class="press__logo"><img src="assets/img/press/press-materialdistrict.png" alt="" /></div>
+            <h3 class="press__title">Materialdistric</h3>
+            <p class="press__body">Modular nests for wild bees made of cast<br />
+              soil</p>
+            <a class="press__link" href="https://materialdistrict.com/article/modular-nests-for-wild-bees-made-of-cast-soil/" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>Read article</span>
+            </a>
+            <a class="press__card-overlay" href="https://materialdistrict.com/article/modular-nests-for-wild-bees-made-of-cast-soil/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          <article class="press__card" data-card="neozone">
+            <p class="press__chip">French press · Innovation</p>
+            <div class="press__logo"><img src="assets/img/press/press-neozone.png" alt="" /></div>
+            <h3 class="press__title">NeoZone</h3>
+            <p class="press__body">Innovative clay modules<br />
+              designed to support pollinators<br />
+              through sustainable design.</p>
+            <a class="press__link" href="https://www.neozone.org/innovation/nestincity-linvention-dune-brique-en-terre-cuite-modulaire-pour-offrir-des-nids-dabeilles-aux-pollinisateurs/" target="_blank" rel="noopener noreferrer">
+              <img class="press__link-arrow" src="assets/svg/arrow-diag.png" alt="" width="13" height="13" />
+              <span>Read article</span>
+            </a>
+            <a class="press__card-overlay" href="https://www.neozone.org/innovation/nestincity-linvention-dune-brique-en-terre-cuite-modulaire-pour-offrir-des-nids-dabeilles-aux-pollinisateurs/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"></a>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== groups — Figma "Homepage" (y5934 h870) ===== -->
+      <section class="groups band">
+        <h2 class="groups__title">
+          A community<br />garden? A school?<br />A group?
+        </h2>
+
+        <p class="groups__body">
+          When we say "bee," most of us picture the honeybee.<br />
+          But she is just one species out of more than twenty two<br />
+          thousand. A workshop that teaches who they really are<br />
+          and builds them a home.
+        </p>
+
+        <a class="groups__cta btn btn--primary" href="contact.html#workshop-request">Book a Workshop</a>
+
+        <!-- photo strip: 540-wide frames on a 548 pitch, bleeding past both edges -->
+        <div class="groups__strip">
+          <img src="assets/img/garden/garden-01.jpg" alt="" />
+          <img src="assets/img/garden/garden-02.jpg" alt="" />
+          <img src="assets/img/garden/garden-03.jpg" alt="" />
+          <img src="assets/img/garden/garden-04.jpg" alt="" />
+        </div>
+      </section>
+
+      {{> footer col2title="NEST IN CITY"}}
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
