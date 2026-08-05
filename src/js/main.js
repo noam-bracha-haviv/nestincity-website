@@ -127,15 +127,24 @@ document.querySelectorAll('.shop-filters').forEach((bar) => {
   });
 });
 
-/* Responsive: below 1440 scale the whole canvas so it fits the viewport
-   exactly. clientWidth excludes the scrollbar, so this never overflows. */
+/* Responsive: between 1024 and 1440 scale the whole canvas so it fits the
+   viewport exactly. clientWidth excludes the scrollbar, so this never
+   overflows. Below 1024 the mobile layer re-flows the page instead, so the
+   factor stays exactly 1 — no stale fraction is left on <html> for a stray
+   `zoom` to pick up.
+
+   The 1024 floor is tested with matchMedia, not with clientWidth: a media query
+   measures the viewport *including* a classic scrollbar while clientWidth
+   excludes it, and mixing the two bases would leave a ~15px band of widths
+   where base.css applies the zoom but this code has already published 1. */
 (() => {
   const CANVAS = 1440;
+  const desktop = window.matchMedia('(min-width: 1024px)');
   const apply = () => {
     const w = document.documentElement.clientWidth;
     document.documentElement.style.setProperty(
       '--page-zoom',
-      w < CANVAS ? String(w / CANVAS) : '1'
+      desktop.matches && w < CANVAS ? String(w / CANVAS) : '1'
     );
   };
   apply();

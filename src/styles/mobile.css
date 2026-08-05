@@ -16,11 +16,17 @@
    desktop ones — only geometry changes. Reference width 390px.
    ========================================================================== */
 
-@media (max-width: 1023px) {
-  /* ---- canvas ----------------------------------------------------------- */
+/* The .98 pairs with base.css's `min-width: 1024px`, so a fractional viewport
+   width (browser zoom, fractional display scaling) can never land between the
+   two layouts and leave the page with neither. */
+@media (max-width: 1023.98px) {
+  /* ---- canvas -----------------------------------------------------------
+     base.css no longer applies `zoom` below 1024, so this is belt-and-braces
+     rather than the only guard; !important on the width keeps the mobile
+     canvas from losing to base.css's 1440px if the load order ever changes. */
   .page {
-    width: 100%;
-    zoom: 1 !important; /* beats base.css's var(--page-zoom) */
+    width: 100% !important;
+    zoom: 1 !important;
     overflow-x: hidden;
   }
 
@@ -235,6 +241,7 @@
 
   .story__video {
     width: 100% !important;
+    flex: 0 0 auto; /* WebKit 15 ignores aspect-ratio on auto-sized flex items */
     aspect-ratio: 654 / 417;
     border-radius: 20px;
     overflow: hidden;
@@ -353,8 +360,11 @@
     text-align: center;
   }
 
-  .statement__bee {
+  /* `img.` is required: the generic `.band img` rule above is 0-1-1 and also
+     !important, so a class-only selector loses and the bee rendered 350px wide */
+  img.statement__bee {
     width: 120px !important;
+    height: auto !important;
     margin: 0 auto;
   }
 
@@ -397,11 +407,14 @@
 
   .press__viewport {
     margin: 0 -20px;
+    /* the -20px bleed needs the inherited max-width:100% lifted, or the box is
+       over-constrained and the right margin is re-solved to +20px, parking the
+       scroller 40px short of the viewport edge */
+    max-width: none;
     padding: 0 20px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
   }
 
   .press__strip {
@@ -417,6 +430,7 @@
   .press__card {
     flex: 0 0 300px;
     width: 300px !important;
+    max-width: none; /* WebKit resolves the inherited % against the scrollport */
     padding: 22px;
     border-radius: 20px !important;
     scroll-snap-align: center;
@@ -460,8 +474,11 @@
     margin-top: auto;
   }
 
-  .press__link-arrow {
+  /* same specificity trap as img.statement__bee — this rendered 181px wide */
+  img.press__link-arrow {
+    flex: 0 0 13px;
     width: 13px !important;
+    height: 13px !important;
   }
 
   .press__card-overlay {
@@ -476,10 +493,10 @@
     display: flex;
     gap: 8px;
     margin: 24px -20px 0;
+    max-width: none; /* same over-constraint as .press__viewport */
     padding: 0 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     touch-action: pan-x pan-y;
     cursor: default;
     width: auto !important;
@@ -667,6 +684,10 @@
   }
 
   .product {
+    /* the chip below is absolute and a SIBLING of .product__media, so without
+       this its containing block was the whole band and all six chips piled up
+       in the band's top-left corner */
+    position: relative !important;
     padding: 14px;
     border-radius: 18px !important;
     display: flex;
@@ -676,6 +697,7 @@
 
   .product__media {
     position: relative !important;
+    flex: 0 0 auto; /* WebKit 15 ignores aspect-ratio on auto-sized flex items */
     aspect-ratio: 353 / 225;
     border-radius: 14px;
     overflow: hidden;
@@ -691,8 +713,10 @@
 
   .product__chip {
     position: absolute !important;
-    left: 10px !important;
-    top: 10px !important;
+    /* offset from the card, which has 14px of padding + 1px border, so this
+       lands ~9px inside the image — the desktop inset is 8px */
+    left: 24px !important;
+    top: 24px !important;
     z-index: 2;
     height: 24px !important;
     width: auto !important;

@@ -91,8 +91,15 @@ ul {
    1440. The full-bleed layers already resolve to 1440px at these widths
    because they use max(100vw, 1440px), which is exactly what the scaled canvas
    needs, so they need no override here.
+
+   The lower bound is 1024px: below that the mobile layer re-flows the page, so
+   the canvas must NOT be scaled there. Leaving this query open to 0 made the
+   only thing preventing a shrunken desktop miniature on a phone a `zoom: 1
+   !important` in mobile.css — one cascade accident away from the bug. The bound
+   pairs with mobile.css's `max-width: 1023.98px`, so no viewport width, not
+   even a fractional one, falls between the two layouts.
    ------------------------------------------------------------------------- */
-@media (max-width: 1439px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
   .page {
     zoom: var(--page-zoom, 1);
   }
