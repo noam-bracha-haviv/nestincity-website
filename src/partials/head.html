@@ -1,5 +1,23 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Defined initial-entry behaviour: entering the site always starts on Home.
+     A page may render itself only when the request came from inside the site,
+     which the referrer states — an in-site click, in-site Back/Forward and a
+     refresh all carry a referrer from this directory, so navigation once the
+     visitor is inside behaves exactly as before. Every other arrival (main URL,
+     a shared or bookmarked inner URL, a link from the case study, a search
+     result) is an entry and resolves to Home. Inline and first in <head> so it
+     resolves before any paint, and location.replace leaves no history entry to
+     bounce back to. -->
+<script>
+  (function () {
+    var base = location.origin + location.pathname.replace(/[^/]*$/, '');
+    var file = location.pathname.split('/').pop();
+    if (file && file !== 'index.html' && document.referrer.indexOf(base) !== 0) {
+      location.replace(base + 'index.html');
+    }
+  })();
+</script>
 <title>{{title}}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
