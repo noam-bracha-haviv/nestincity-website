@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "nestincity",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "5178", "--directory", "dist"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/brachahaviv/Documents/Claude/Projects/nestincity-website/.claude/serve.js"],
       "port": 5178
     }
   ]
