@@ -17,6 +17,28 @@
   z-index: 10;
 }
 
+/* ---- back to the case study ---------------------------------------------
+   Arrow only — no pill, no fill, no label. Its box is the same 65px height as
+   the logo so the two centre on each other, and it clears the logo by 16px. */
+.header__back {
+  position: absolute;
+  left: calc(var(--gutter) - 34px);
+  top: 43px;
+  height: 65px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  transition: opacity 0.18s ease;
+}
+
+.header__back svg {
+  display: block;
+}
+
+.header__back:hover {
+  opacity: 0.6;
+}
+
 /* ---- logo ---------------------------------------------------------------- */
 .header__logo {
   position: absolute;
@@ -41,9 +63,10 @@
 /* ---- nav ---------------------------------------------------------------- */
 .nav {
   position: absolute;
-  /* pinned to the measured Figma ink origin (x 506) rather than optically
-     centred, so the label row lands on the same pixel as the design */
-  left: 505px;
+  /* Figma pinned the five-label row at the measured ink origin x 505, which
+     happened to centre it on the 1440 grid. With About gone the row is 344px
+     wide, so the pin moves to keep that centring (1440 - 344) / 2. */
+  left: 548px;
   top: 65px;
   display: flex;
 }

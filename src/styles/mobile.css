@@ -120,10 +120,18 @@
     padding: 16px 20px 0;
   }
 
+  /* the header is a flex row here, so the arrow rides beside the logo and the
+     pair is held left by the auto margin (the cart stays on the right) */
+  .header__back {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+
   .header__logo {
     width: 52px !important;
     height: 49px !important;
     flex: 0 0 auto;
+    margin-right: auto;
   }
 
   .header__logo img {
@@ -216,7 +224,11 @@
     padding-top: 24px;
   }
 
-  .hero__lede,
+  .hero__statement {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+  }
+
   .compare__lede,
   .groups__body,
   .myworkshop__body,
@@ -283,6 +295,8 @@
     object-fit: fill;
   }
 
+  /* Hidden until the video is tapped (JS sets data-touched on the frame); the
+     reveal rules in home.css outrank this by specificity. */
   .story__video-toggle,
   .story__video-mute,
   .story__video-full {
@@ -290,7 +304,7 @@
     width: 40px !important;
     height: 40px !important;
     bottom: 12px !important;
-    opacity: 1;
+    opacity: 0;
   }
 
   .story__video-toggle {

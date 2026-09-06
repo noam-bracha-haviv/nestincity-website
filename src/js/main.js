@@ -95,10 +95,74 @@ document.querySelectorAll('.story__video').forEach((wrap) => {
     e.stopPropagation();
     toggle();
   });
-  video.addEventListener('click', toggle);
+
+  /* Touch reveal — the controls are hover-only in CSS, which a touch device
+     never satisfies, so a tap sets data-touched for a few seconds. The tap that
+     brings them up must not also toggle playback. */
+  let hideTimer;
+  let swallowClick = false;
+  const reveal = () => {
+    wrap.dataset.touched = 'true';
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      delete wrap.dataset.touched;
+    }, 3000);
+  };
+
+  wrap.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse') return;
+    swallowClick = wrap.dataset.touched !== 'true' && e.target === video;
+    reveal();
+  });
+
+  video.addEventListener('click', () => {
+    if (swallowClick) {
+      swallowClick = false;
+      return;
+    }
+    toggle();
+  });
   video.addEventListener('play', sync);
   video.addEventListener('pause', sync);
   video.addEventListener('volumechange', sync);
+
+  /* Fullscreen. Standard Fullscreen API on the frame so the controls come
+     along; iOS Safari does not implement it on elements, so fall back to the
+     video's own webkitEnterFullscreen. Esc / the browser gesture also exits,
+     hence the fullscreenchange listeners rather than a local flag. */
+  const full = wrap.querySelector('.story__video-full');
+  if (full) {
+    const fsElement = () =>
+      document.fullscreenElement || document.webkitFullscreenElement || null;
+
+    const syncFull = () => {
+      const on = fsElement() === wrap;
+      wrap.dataset.full = on ? 'true' : 'false';
+      full.setAttribute('aria-label', on ? 'Exit full screen' : 'Full screen');
+      full.setAttribute('aria-pressed', on ? 'true' : 'false');
+    };
+
+    const exit = () => {
+      if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    };
+
+    const enter = () => {
+      if (wrap.requestFullscreen) wrap.requestFullscreen().catch(() => {});
+      else if (wrap.webkitRequestFullscreen) wrap.webkitRequestFullscreen();
+      else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); // iOS
+    };
+
+    full.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (fsElement()) exit();
+      else enter();
+    });
+
+    document.addEventListener('fullscreenchange', syncFull);
+    document.addEventListener('webkitfullscreenchange', syncFull);
+    syncFull();
+  }
 
   if (mute) {
     mute.addEventListener('click', (e) => {
